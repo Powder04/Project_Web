@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng nhập</title>
+    <link rel="icon" href="../img/icon.png" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <article class="navbar">
+        <img
+          src="../img/logoname.png"
+          style="width: 240px; height: 60px"
+          usemap="#home"
+        />
+        <map name="home">
+          <area shape="rect" coords="0 0 943 263" href="../display/main.html" />
+        </map>
+        <nav>
+          <a href="">Trang chủ</a>
+          <a href="">Giới thiệu</a>
+        </nav>
+      </article>
+    </header>
+
+    <main class="container">
+      <fieldset>
+        <h1 class="heading">Đăng nhập</h1>
+        <form action="./login.php" method="post">
+          <article class="account">
+            <label class="lab">Tên đăng nhập: </label>
+            <input type="text" class="inpt" name="username" required />
+          </article>
+          <article class="account pwd-container">
+            <label class="lab">Mật khẩu: </label>
+            <input type="password" id="password" name="pwd" class="inpt" required />
+            <span class="toggle-icon" id="toggleIcon" onclick="togglePassword()">
+                <i class="fa-solid fa-eye-slash"></i>
+            </span>
+          </article>
+          <article class="account btn-account">
+            <button type="reset" class="btn btn-1">Hủy</button>
+            <button type="submit" class="btn btn-2">Đăng nhập</button>
+          </article>
+          <p style="text-align: center; padding-top: 15px">Hoặc</p>
+          <article class="account a-account">
+            <a href="./register.html"> Đăng ký</a>
+          </article>
+        </form>
+      </fieldset>
+    </main>
+    <script>
+      function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const icon = document.getElementById("toggleIcon");
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          icon.innerHTML = '<i class="fa-solid fa-eye"></i>'; // Mở
+        } else {
+          passwordInput.type = "password";
+          icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>'; // Ẩn
+        }
+      }
+    </script>
+  </body>
+</html>

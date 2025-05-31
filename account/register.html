@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="icon" href="../img/icon.png">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <header>
+        <article class="navbar">
+            <img src="../img/logoname.png" style="width: 240px; height: 60px;" usemap="#home">
+            <map name="home">
+                <area shape="rect" coords="0 0 943 263" href="../display/main.html">
+            </map>
+            <nav>
+                <a href="">Trang chủ</a>
+                <a href="">Giới thiệu</a>
+            </nav>
+        </article>
+    </header>
+
+    <main class="container">
+        <fieldset>
+            <h1 class="heading">Đăng ký</h1>
+            <form action="" method="post" onsubmit="return checkForm()">
+                <article class="account">
+                    <label class="lab">Họ và tên: </label>
+                    <input type="text" class="inpt" name="fullname" required>
+                </article>
+                <article class="account">
+                    <label class="lab">Địa chỉ email: </label>
+                    <input type="email" class="inpt" name="email" required>
+                </article>
+                <article class="account">
+                    <label class="lab">Năm sinh: </label>
+                    <select name="birth" id="birth" style="padding: 3px;">
+                        <option value="none">--Chọn năm sinh--</option>
+                    </select>
+                </article>
+                <article class="account">
+                    <label class="lab">Tên đăng nhập: </label>
+                    <input type="text" class="inpt" name="username" required>
+                </article>
+                <article class="account">
+                    <label class="lab">Mật khẩu: </label>
+                    <input type="password" minlength="8" name="pwd" class="inpt" id="pwd" required>
+                </article>
+                <article class="account">
+                    <label class="lab">Nhập lại mật khẩu: </label>
+                    <input type="password" name="repwd" class="inpt" id="repwd" required>
+                </article>
+                <article class="account btn-account">
+                    <button type="reset" class="btn btn-1">Xóa</button>
+                    <button type="submit" class="btn btn-2">Đăng ký</button>
+                </article>
+                <p style="text-align: center; padding-top: 15px;">Hoặc</p>
+                <article class="account a-account">
+                    <a href="./login.html">Đăng nhập</a>
+                </article>
+            </form>
+        </fieldset>
+        <script>
+            var currentYear = new Date().getFullYear();
+            var selected = document.querySelector('select');
+
+            for(var i = currentYear-100; i<=currentYear; i++) {
+                var opt = document.createElement('option');
+                opt.setAttribute('value', `${i}`);
+                opt.innerText = `${i}`;
+                selected.append(opt);
+            }
+
+            function checkForm() {
+                var pwd = document.getElementById('pwd').value;
+                var repwd = document.getElementById('repwd').value;
+                var birth = document.getElementById('birth').value;
+
+                if(birth === 'none') {
+                    alert("Vui lòng chọn năm sinh.");
+                    return false;
+                }
+
+                if(pwd !== repwd) {
+                    alert("Mật khẩu không trùng khớp. Vui lòng kiểm tra lại.");
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+    </main>
+</body>
+</html>
