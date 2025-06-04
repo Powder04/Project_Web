@@ -3,6 +3,5 @@ CREATE TABLE customer (
     email varchar(100) not null UNIQUE,
 	fullname varchar(100) not null,
     birthday int not null,
-    username varchar(50) not null UNIQUE,
     pwd varchar(255) not null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

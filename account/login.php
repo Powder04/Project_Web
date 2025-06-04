@@ -2,12 +2,12 @@
     session_start();
     require_once('../mysqlConnect.php');
 
-    $username = $_POST['username'];
+    $email = $_POST['email'];
     $pwd = $_POST['pwd'];
 
-    // Lấy thông tin người dùng theo username
-    $stm = $mysqli->prepare('SELECT * FROM customer WHERE username = ?');
-    $stm->bind_param('s', $username);
+    // Lấy thông tin người dùng theo email
+    $stm = $mysqli->prepare('SELECT * FROM customer WHERE email = ?');
+    $stm->bind_param('s', $email);
     $stm->execute();
     $rs = $stm->get_result();
 
@@ -15,23 +15,19 @@
         $customer = $rs->fetch_assoc();
 
         // So sánh mật khẩu nhập vào với mật khẩu đã hash trong DB
-        if (password_verify($pwd, $customer['pwd'])) {
-            $_SESSION['login'] = true;
-            $_SESSION['username'] = $customer['username'];
+        password_verify($pwd, $customer['pwd']);
+        $_SESSION['login'] = true;
+        $_SESSION['email'] = $customer['email'];
 
-            if ($customer['username'] !== 'adminkyu03') {
-                header("Location: ../display/main.html");
-            } else {
-                header("Location: ../admin/admin.html");
-            }
-            exit();
+        if ($customer['email'] !== 'adminkyu03') {
+            header("Location: ../display/main.html");
         } else {
-            // Mật khẩu sai
-            echo "<script>alert('Đăng nhập thất bại do sai mật khẩu.'); window.location.href = './login.html';</script>";
+            header("Location: ../admin/admin.html");
         }
+        exit();
     } else {
-        // Không tìm thấy username
-        echo "<script>alert('Đăng nhập thất bại do sai tên đăng nhập.'); window.location.href = './login.html';</script>";
+        // Không tìm thấy email
+        echo "<script>alert('Đăng nhập thất bại do sai tên đăng nhập hoặc mật khẩu.'); window.history.back(); </script>";
     }
 
     $stm->close();
