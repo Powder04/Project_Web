@@ -35,6 +35,8 @@
           <a href="../display/main.html">Trang chủ</a>
           <a href="">Giới thiệu</a>
           <a href="./show_information.php">Thông tin khách hàng</a>
+          <a href="../display/show_product.php">Sản phẩm</a>
+          <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
         </nav>
       </article>
     </header>

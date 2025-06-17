@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Icon giỏ hàng -->
+<div id="cart-icon" onclick="window.location='checkout.php'">
+    🛒 Giỏ hàng
+    <div id="cart-dropdown"></div>
+</div>
+
+<!-- Thêm sản phẩm -->
+<button onclick="addToCart(1, 'Sản phẩm A')">Thêm SP A</button>
+<button onclick="addToCart(2, 'Sản phẩm B')">Thêm SP B</button>
+
+<script src="script.js"></script>
+</body>
+<table class="list-product">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Tùy chọn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img src="../product/balodenxam.jpg"></td>
+                        <td>Balo đen</td>
+                        <td>2</td>
+                        <td>560.000VNĐ</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img src="../product/balodenxam.jpg"></td>
+                        <td>Balo đen</td>
+                        <td>2</td>
+                        <td>560.000VNĐ</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><img src="../product/balodenxam.jpg"></td>
+                        <td>Balo đen</td>
+                        <td>2</td>
+                        <td>560.000VNĐ</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><img src="../product/balodenxam.jpg"></td>
+                        <td>Balo đen</td>
+                        <td>2</td>
+                        <td>560.000VNĐ</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><img src="../product/balodenxam.jpg"></td>
+                        <td>Balo đen</td>
+                        <td>2</td>
+                        <td>560.000VNĐ</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+</html>

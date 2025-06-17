@@ -1,0 +1,62 @@
+<?php
+    require_once("../mysqlConnect.php");
+    $mysqli->select_db("project");
+
+    $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
+    $limit = 20;
+    $offset = ($page - 1) * $limit;
+
+    $data = [];
+
+    if (empty($_POST["type"]) || $_POST["type"] === "Tất cả") {
+        // Đếm tổng số
+        $rs = $mysqli->query("SELECT COUNT(*) FROM product WHERE quantity > 0");
+        $total = $rs->fetch_row()[0];
+        $total_pages = ceil($total / $limit);
+
+        $sql = "SELECT p.product_id, p.name, p.price, p.sold_count, i.mime_type, TO_BASE64(i.image_data) AS image_data
+                FROM product p
+                LEFT JOIN images i ON p.product_id = i.product_id
+                WHERE p.quantity > 0
+                ORDER BY p.price ASC LIMIT ? OFFSET ?";
+        $stm = $mysqli->prepare($sql);
+        $stm->bind_param("ii", $limit, $offset);
+    } 
+    else {
+        $type = $_POST["type"];
+        $rs = $mysqli->prepare("SELECT COUNT(*) FROM product WHERE category = ? AND quantity > 0");
+        $rs->bind_param("s", $type);
+        $rs->execute();
+        $rs->bind_result($total);
+        $rs->fetch();
+        $rs->close();
+
+        $total_pages = ceil($total / $limit);
+
+        $sql = "SELECT p.product_id, p.name, p.price, p.sold_count, i.mime_type, TO_BASE64(i.image_data) AS image_data
+                FROM product p
+                LEFT JOIN images i ON p.product_id = i.product_id
+                WHERE p.quantity > 0 AND p.category = ?
+                ORDER BY p.price ASC LIMIT ? OFFSET ?";
+        $stm = $mysqli->prepare($sql);
+        $stm->bind_param("sii", $type, $limit, $offset);
+    }
+
+    $stm->execute();
+    $result = $stm->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    $stm->close();
+    $mysqli->close();
+
+    echo json_encode([
+        'data' => $data,
+        'page' => $page,
+        'limit' => $limit,
+        'total_pages' => $total_pages,
+        'type' => $_POST["type"] ?? "Tất cả"
+    ]);
+?>

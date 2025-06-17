@@ -1,0 +1,24 @@
+#cart-icon {
+    position: relative;
+    cursor: pointer;
+}
+#cart-dropdown {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    width: 250px;
+    background: #fff;
+    border: 1px solid #ccc;
+    display: none;
+    z-index: 100;
+}
+#cart-icon:hover #cart-dropdown {
+    display: block;
+}
+.cart-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.cart-item:last-child {
+    border-bottom: none;
+}

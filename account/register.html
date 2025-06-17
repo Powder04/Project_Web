@@ -17,8 +17,9 @@
                 <area shape="rect" coords="0 0 943 263" href="../display/index.html">
             </map>
             <nav>
-                <a href="">Trang chủ</a>
-                <a href="">Giới thiệu</a>
+                <a href="../display/index.html">Trang chủ</a>
+                <a href="../display/introduce.html">Giới thiệu</a>
+                <a href="../display/show_product.php">Sản phẩm</a>
             </nav>
         </article>
     </header>
@@ -59,35 +60,7 @@
                 </article>
             </form>
         </fieldset>
-        <script>
-            var currentYear = new Date().getFullYear();
-            var selected = document.querySelector('select');
-
-            for(var i = currentYear-100; i<=currentYear; i++) {
-                var opt = document.createElement('option');
-                opt.setAttribute('value', `${i}`);
-                opt.innerText = `${i}`;
-                selected.append(opt);
-            }
-
-            function checkForm() {
-                var pwd = document.getElementById('pwd').value;
-                var repwd = document.getElementById('repwd').value;
-                var birth = document.getElementById('birth').value;
-
-                if(birth === 'none') {
-                    alert("Vui lòng chọn năm sinh.");
-                    return false;
-                }
-
-                if(pwd !== repwd) {
-                    alert("Mật khẩu không trùng khớp. Vui lòng kiểm tra lại.");
-                    return false;
-                }
-
-                return true;
-            }
-        </script>
+        <script src="../javascript/script.js"></script>
     </main>
 </body>
 </html>

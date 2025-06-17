@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style/style_admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="../img/icon.png">
+  <title>Quản lý sản phẩm</title>
+</head>
+<body>
+    <header>
+        <article class="navbar">
+            <img src="../img/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;">
+            <nav>
+                <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
+            </nav>
+        </article>
+    </header>
+
+    <div class="main-container">
+        <div class="navcontainer">
+            <nav class="nav">
+                <div class="nav-upper-options">
+                    <a href="./admin.html">
+                        <div class="nav-option option1">
+                            <h3>Dashboard</h3>
+                        </div>
+                    </a>
+                    <a href="./manage_product.html">
+                        <div class="nav-option option2">
+                            <h3>Quản lý sản phẩm</h3>
+                        </div>
+                    </a>
+                    <a href="./manage_user.html">
+                        <div class="nav-option option3">
+                            <h3>Quản lý người dùng</h3>
+                        </div>
+                    </a>
+                    <a href="./manage_bill.html">
+                        <div class="nav-option option4">
+                            <h3>Quản lý đơn hàng</h3>
+                        </div>
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="main">
+            <div id="back">
+            <button onclick="window.location.href='./manage_product.html';" style="padding: 8px 20px">
+                <i class="fa-solid fa-backward"></i>
+            </button>
+            </div>
+            <div class="form-wrapper">
+                <fieldset>
+                    <h1 class="heading">Thêm sản phẩm mới</h1>
+                    <form action="./add_product.php" method="post" enctype="multipart/form-data" id="formProduct">
+                        <article class="account">
+                            <label class="lab">Tên sản phẩm: </label>
+                            <input type="text" class="inpt" name="nameProduct" required />
+                        </article>
+                        <article class="account">
+                            <label class="lab">Mã sản phẩm: </label>
+                            <input type="text" class="inpt" name="productID" required />
+                        </article>
+                        <article class="account">
+                            <label class="lab" for="image_file">Hình ảnh sản phẩm:</label>
+                            <input type="file" name="image_file" accept="image/png, image/jpg, image/jpeg, image/gif" required/>
+                        </article>
+                        <article class="account">
+                            <label class="lab">Loại sản phẩm:</label>
+                            <select name="typeProduct" style="padding: 3px">
+                                <option value="Khác" select>O-Khác</option>
+                                <option value="Balo">BP-Balo</option>
+                                <option value="Móc khóa">KC-Móc khóa</option>
+                                <option value="Phụ kiện tóc">HA-Phụ kiện tóc</option>
+                                <option value="Túi xách">HB-Túi xách</option>
+                            </select>
+                        </article>
+                        <article class="account">
+                            <label class="lab">Giá sản phẩm: </label>
+                            <input type="number" min="1" name="price" class="inpt" required />
+                        </article>
+                        <article class="account">
+                            <label class="lab">Số lượng: </label>
+                            <input type="number" min="1" name="quantity" class="inpt" required />
+                        </article>
+                        <article class="account btn-account">
+                            <button type="reset" class="btn btn-1">Xóa</button>
+                            <button type="submit" class="btn btn-2">Thêm sản phẩm</button>
+                        </article>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

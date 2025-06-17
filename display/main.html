@@ -14,11 +14,12 @@
         <article class="navbar">
             <img src="../img/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;" usemap="#home">
             <map name="home">
-                <area shape="rect" coords="0 0 943 263" href=".">
+                <area shape="rect" coords="0 0 943 263" href="./main.html">
             </map>
             <nav>
-                <a href="./index.html">Trang chủ</a>
+                <a href="./main.html">Trang chủ</a>
                 <a href="">Giới thiệu</a>
+                <a href="./show_product.php">Sản phẩm</a>
                 <a href="../account/get_information.php">Cập nhật thông tin</a>
                 <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
             </nav>
@@ -54,68 +55,60 @@
                     </h3>
                 </div>
                 <div class="hero">
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/tuidungbinhnuoc2.jpg">
                         <p>Túi đựng nước họa tiết nấm</p>
                         <div class="price-container">
                             <bdi class="price">70000</bdi>
-                            <span>đ</span>
                         </div>
                     </div>
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/balodenxam.jpg">
-                        <p>Balo đen xám</p>
+                        <p>Balo đen</p>
                         <div class="price-container">
-                            <bdi class="price">270000</bdi>
-                            <span>đ</span>
+                            <bdi class="price">280000</bdi>
                         </div>
                     </div>
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/mockhoasuabien.jpg">
                         <p>Móc khóa sứa biển</p>
                         <div class="price-container">
                             <bdi class="price">50000</bdi>
-                            <span>đ</span>
                         </div>
                     </div>
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/scrunchiethanhlong.jpg">
                         <p>Scrunchie thanh long</p>
                         <div class="price-container">
                             <bdi class="price">45000</bdi>
-                            <span>đ</span>
                         </div>
                     </div> 
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/tuidungcamera.jpg">
                         <p>Túi đựng camera</p>
                         <div class="price-container">
                             <bdi class="price">80000</bdi>
-                            <span>đ</span>
                         </div>
                     </div>
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/nokeptocdo.jpg">
                         <p>Nơ kẹp tóc hoa linh lan</p>
                         <div class="price-container">
                             <bdi class="price">75000</bdi>
-                            <span>đ</span>
                         </div>
                     </div>
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/tuidibien.jpg">
                         <p>Túi đựng điện thoại</p>
                         <div class="price-container">
                             <bdi class="price">42000</bdi>
-                            <span>đ</span>
                         </div>
                     </div>
-                    <div class="hero-content hero-product">
+                    <div class="hero-content">
                         <img src="../product/mancua.jpg">
                         <p>Rèm cửa</p>
                         <div class="price-container">
                             <bdi class="price">284000</bdi>
-                            <span>đ</span>
                         </div>
                     </div>
                 </div>
@@ -150,13 +143,6 @@
             <i class="fa-brands fa-cc-jcb"></i>
         </article>
     </footer>
-    <script>
-        var listPrice = document.getElementsByClassName('price');
-        for(var i = 0; i<listPrice.length; i++) {
-            console.log(listPrice[i].innerHTML);
-            var newPrice = parseInt(listPrice[i].innerHTML, 10).toLocaleString('vi-VN');
-            listPrice[i].innerHTML = newPrice;
-        }  
-    </script>
+    <script src="../javascript/script.js"></script>
 </body>
 </html>
