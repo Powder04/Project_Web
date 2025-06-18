@@ -45,8 +45,10 @@
         $new_sold = $old_warehouse["sold_count"] + 1;
 
         $update = $mysqli->prepare("UPDATE product SET quantity = ?, sold_count = ? WHERE product_id = ?");
-        $update->bind_param("iis", $new_quantity, $new_sold);
+        $update->bind_param("iis", $new_quantity, $new_sold, $product_id);
         $update->execute();
         $update->close();
     }
+    unset($_SESSION["cart"]);
+    echo '<script> alert("Quý khách đã đặt hàng thành công. Xin cảm ơn."); window.location.href="./show_product.php"; </script>'
 ?>

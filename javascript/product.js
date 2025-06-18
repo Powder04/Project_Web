@@ -11,7 +11,8 @@ function fetchProduct(page = 1) {
             main.innerHTML += `
                 <div class="product"
                     data-name="${product.name}" 
-                    data-price="${product.price}" 
+                    data-price="${product.price}"
+                    data-stock="${product.quantity}" 
                     data-image="data:${product.mime_type};base64,${product.image_data}">
                     <img src="data:${product.mime_type};base64,${product.image_data}"/>
                     <p>${product.name}</p>
@@ -70,6 +71,7 @@ function fetchProduct(page = 1) {
 }
 
 async function addToCart(product_id, button) {
+    // Kiểm tra đăng nhập
     var checkLogin = await fetch('../account/check_login.php');
     var loginStatus = await checkLogin.json();
 
@@ -79,20 +81,27 @@ async function addToCart(product_id, button) {
         return;
     }
 
+    // Lấy thông tin sản phẩm
     var productElement = button.closest('.product');
     var name = productElement.dataset.name;
     var price = parseInt(productElement.dataset.price);
     var image = productElement.dataset.image;
+    var stock = parseInt(productElement.dataset.stock); 
     var quantity = parseInt(productElement.querySelector('input[type="number"]').value);
     var total_price = price * quantity;
 
-    if(isNaN(quantity) || quantity === 0) {
+    if (isNaN(quantity) || quantity === 0) {
         alert("Vui lòng nhập số lượng hợp lệ!");
         return;
     }
 
-    if(quantity > 50) {
+    if (quantity > 50) {
         alert("Số lượng mua quá lớn. Vui lòng nhập lại số lượng.");
+        return;
+    }
+
+    if (quantity > stock) {
+        alert(`Chỉ còn ${stock} sản phẩm trong kho. Vui lòng nhập lại số lượng.`);
         return;
     }
 
@@ -103,7 +112,7 @@ async function addToCart(product_id, button) {
         body: JSON.stringify(dataToSend)
     });
 
-    alert(name + " được đặt thành công. Số lượng: " + quantity);
+    alert(`${name} được đặt thành công. Số lượng: ${quantity}`);
     loadCart();
     fetchProduct();
 }

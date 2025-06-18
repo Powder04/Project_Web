@@ -17,9 +17,9 @@
             $_SESSION['email'] = $customer['email'];
 
             if ($customer['email'] !== 'adminkyu03@gmail.com') {
-                header("Location: ../display/main.html");
+                echo '<script> alert("Đăng nhập thành công."); window.location.href="../display/main.html"; </script>';
             } else {
-                header("Location: ../admin/admin.html");
+                echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/admin.html"; </script>';
             }
             exit();
         }
