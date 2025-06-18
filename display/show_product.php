@@ -43,7 +43,8 @@
                     else echo '<a href="./index.html">Trang chủ</a>';
                 ?>
                 <a href="./introduce.html">Giới thiệu</a>
-                <a href="./buy_product.php" id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 50px;">
+                <a <?php if(isset($_SESSION["login"]) && $_SESSION["login"] === true ) echo 'href="./buy_product.php"';
+                         else echo 'href="../account/login.html"'; ?> id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 50px;">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
                 </a>

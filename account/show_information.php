@@ -1,7 +1,6 @@
 <?php
   session_start();
   require_once('../mysqlConnect.php');
-  $mysqli->select_db('project');
 
   $stm = $mysqli->prepare('SELECT fullname, birthday FROM customer WHERE email = ?');
   $stm->bind_param('s', $_SESSION['email']);

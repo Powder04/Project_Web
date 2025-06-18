@@ -1,6 +1,5 @@
 <?php
     require_once('../mysqlConnect.php');
-    $mysqli->select_db('project');
 
     $nameProduct = $_POST['nameProduct'];
     $productID = $_POST['productID'];

@@ -7,7 +7,7 @@ async function initProvinces() {
   provinces = await r.json();
   var pSel = document.getElementById("province");
   provinces.forEach((p) => {
-    var opt = new Option(p.name, p.code);
+    var opt = new Option(p.name, p.name); // Option(Text hiển thị, value, defaultSelected, selected)
     pSel.add(opt);
   });
 }
@@ -15,7 +15,7 @@ async function initProvinces() {
 // Cập nhật danh sách quận/huyện theo tỉnh
 function onProvinceChange() {
   var code = this.value;
-  var p = provinces.find((x) => x.code == code);
+  var p = provinces.find((x) => x.name == code);
   var dSel = document.getElementById("district");
   dSel.innerHTML = '<option value="">-- Chọn Quận/Huyện --</option>';
   document.getElementById("ward").innerHTML =
@@ -23,7 +23,7 @@ function onProvinceChange() {
   document.getElementById("ward").disabled = true;
 
   if (p) {
-    p.districts.forEach((d) => dSel.add(new Option(d.name, d.code)));
+    p.districts.forEach((d) => dSel.add(new Option(d.name, d.name)));
     dSel.disabled = false;
   } else {
     dSel.disabled = true;
@@ -33,13 +33,13 @@ function onProvinceChange() {
 // Cập nhật danh sách phường/xã theo quận/huyện
 function onDistrictChange() {
   var province = provinces.find(
-    (p) => p.code == document.getElementById("province").value
+    (p) => p.name == document.getElementById("province").value
   );
-  var district = province?.districts.find((d) => d.code == this.value);
+  var district = province?.districts.find((d) => d.name == this.value);
   var wSel = document.getElementById("ward");
   wSel.innerHTML = '<option value="">-- Chọn Phường/Xã --</option>';
   if (district?.wards) {
-    district.wards.forEach((w) => wSel.add(new Option(w.name, w.code)));
+    district.wards.forEach((w) => wSel.add(new Option(w.name, w.name)));
     wSel.disabled = false;
   } else {
     wSel.disabled = true;

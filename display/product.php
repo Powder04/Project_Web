@@ -1,6 +1,5 @@
 <?php
     require_once("../mysqlConnect.php");
-    $mysqli->select_db("project");
 
     $page = isset($_POST['page']) ? (int)$_POST['page'] : 1;
     $limit = 20;

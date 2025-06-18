@@ -1,7 +1,6 @@
 <?php
     session_start();
     require_once('../mysqlConnect.php');
-    $mysqli->select_db('project');
 
     $email = $_SESSION['email'];
     $stm = $mysqli->prepare('SELECT * FROM customer WHERE email = ?');

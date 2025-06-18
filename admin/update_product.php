@@ -1,6 +1,5 @@
 <?php
     require_once('../mysqlConnect.php');
-    $mysqli->select_db('project');
 
     $productID = $_POST['productID'];
     $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : null;
