@@ -15,8 +15,8 @@ function fetchUser(page = 1) {
                     <td>${user.birthday}</td>
                     <td>${user.total_bill}</td>
                     <td>
-                        <button onclick="edituser('${user.user_id}', ${user.quantity}, ${user.price})" class="update"><i class="fa-solid fa-pen"></i></button>
-                        <button onclick="deleteuser('${user.user_id}')" class="delete"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="editUser('${user.email}', '${user.fullname}', ${user.birthday})" class="update"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="deleteUser('${user.email}')" class="delete"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>`;
         });
@@ -24,7 +24,7 @@ function fetchUser(page = 1) {
         var pag = document.getElementById('pagination');
         pag.innerHTML = '';
 
-        var maxPagesToShow = 2;
+        var maxPagesToShow = 1;
         var startPage = Math.max(1, res.page - Math.floor(maxPagesToShow / 2));
         var endPage = startPage + maxPagesToShow - 1;
 
@@ -58,34 +58,35 @@ function fetchUser(page = 1) {
     xhr.send(`page=${page}`);
 }
 
-// function editProduct(productID, currentQuantity, currentPrice) {
-//     var newQuantity = prompt("Nhập số lượng mới:", currentQuantity);
-//     var newPrice = prompt("Nhập giá mới:", currentPrice);
+function editUser(email, fullname, birthday) {
+    var newEmail = prompt("Nhập email mới:", email);
+    var newFullname = prompt("Nhập họ và tên mới:", fullname);
+    var newBirthday = prompt("Nhập năm sinh mới:", birthday);
 
-//     if ((newQuantity !== null && !isNaN(newQuantity)) && (newPrice !== null && !isNaN(newPrice))) {
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("POST", "./update_product.php", true);
-//         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//         xhr.onload = function () {
-//             alert(this.responseText);
-//             fetchUser();
-//         };
-//         xhr.send(`productID=${productID}&quantity=${newQuantity}&price=${newPrice}`);
-//     }
-// }
+    if (newEmail && newFullname && newBirthday) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "./update_user.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            alert(this.responseText);
+            fetchUser();
+        };
+        xhr.send(`old_email=${encodeURIComponent(email)}&email=${encodeURIComponent(newEmail)}&fullname=${encodeURIComponent(newFullname)}&birthday=${encodeURIComponent(newBirthday)}`);
+    }
+}
 
-// function deleteProduct(productID) {
-//     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
-//         var xhr = new XMLHttpRequest();
-//         xhr.open("POST", "./delete_product.php", true);
-//         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//         xhr.onload = function () {
-//             alert(this.responseText);
-//             fetchUser();
-//         };
-//         xhr.send(`productID=${productID}`);
-//     }
-// }
+function deleteUser(email) {
+    if (confirm("Bạn có chắc chắn muốn xóa khách hàng này?")) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "./delete_user.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function () {
+            alert(this.responseText);
+            fetchUser();
+        };
+        xhr.send(`email=${encodeURIComponent(email)}`);
+    }
+}
 
 window.onload = function () {
     fetchUser();

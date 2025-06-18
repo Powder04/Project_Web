@@ -84,6 +84,10 @@ function removeItem(index, event) {
     }).then(() => loadCart());
 }
 
+function toggleQR() {
+  
+}
+
 document.getElementById("province").addEventListener("change", onProvinceChange);
 document.getElementById("district").addEventListener("change", onDistrictChange);
 document.addEventListener("DOMContentLoaded", loadCart);

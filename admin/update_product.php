@@ -2,8 +2,8 @@
     require_once('../mysqlConnect.php');
 
     $productID = $_POST['productID'];
-    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : null;
-    $price = isset($_POST['price']) ? (float)$_POST['price'] : null;
+    $quantity = (int)$_POST['quantity'] ?? null;
+    $price = (float)$_POST['price'] ?? null;
 
     $sql = "UPDATE product SET ";
     $params = [];

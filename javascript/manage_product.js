@@ -27,7 +27,7 @@ function fetchProducts(page = 1) {
         var pag = document.getElementById('pagination');
         pag.innerHTML = '';
 
-        var maxPagesToShow = 2;
+        var maxPagesToShow = 1;
         var startPage = Math.max(1, res.page - Math.floor(maxPagesToShow / 2));
         var endPage = startPage + maxPagesToShow - 1;
 

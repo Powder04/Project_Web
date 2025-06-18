@@ -51,6 +51,10 @@
             border: none;
             border-radius: 8px;
         }
+        select {
+            padding: 5px;
+            width: 55%;
+        }
     </style>
 </head>
 <body>
@@ -109,6 +113,22 @@
                     <label class="lab" for="detail_address">Địa chỉ cụ thể: </label>
                     <input class="inpt" name="detail_address" type="text" placeholder="Số nhà, tên đường, khu vực, ...">
                 </div>
+                <div class="account">
+                    <label class="lab" for="payment_method">Phương thức thanh toán: </label>
+                    <select name="payment_method" id="payment_method" onchange="toggleQR()">
+                        <option value="Thanh toán khi nhận hàng" selected>Thanh toán khi nhận hàng</option>
+                        <option id="bank" value="Chuyển khoản qua ngân hàng">Chuyển khoản qua ngân hàng</option>
+                        <option id="momo" value="Thanh toán qua Momo">Chuyển khoản qua Momo</option>
+                    </select>
+                </div>
+                <div class="account" id="bankQR" style="display: none;">
+                    <label class="lab">Quét mã để thanh toán </label>
+                    <img src="../img/bankQR.jpg" width="300px" style="margin-left: 218px; margin-top: -15px;">
+                </div>
+                <div class="account" id="momoQR" style="display: none;">
+                    <label class="lab">Quét mã để thanh toán </label>
+                    <img src="../img/momoQR.jpg" width="300px" style="margin-left: 218px; margin-top: -15px;">
+                </div>
             </div>
             <div class="hero-container inf" style="flex: 1; padding: 20px; border-left: 1px solid #000;">
                 <h1 style="text-align: center;">Thông tin sản phẩm</h1>
@@ -116,7 +136,7 @@
             </div>
         </form>
     </main>
-    <footer style="margin: 60px 5px 0px 5px;">
+    <footer style="margin: 100px 5px 0px 5px;">
         <article style="margin-left: 5px;">
             <h3>Mạng xã hội</h3>
             <article>

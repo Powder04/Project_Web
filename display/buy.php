@@ -10,16 +10,19 @@
     $district = $_POST["district"];
     $ward = $_POST["ward"];
     $detail_address = $_POST["detail_address"];
+    $payment_method = $_POST["payment_method"];
     $address = $detail_address.", ".$ward.", ".$district.", ".$province;
     $total_price = 0;
+    $total_quantity = 0;
     for($i = 0; $i<count($_SESSION["cart"]); $i++) {
         foreach($_SESSION["cart"][$i] as $key => $value) {
+            if($key === "quantity") $total_quantity += $value;
             if($key === "total_price") $total_price += $value;
         }
     }
 
-    $stm = $mysqli->prepare("INSERT INTO orders(email, order_date, total_price, address) VALUES(?, ?, ?, ?)");
-    $stm->bind_param("ssis", $email, $time_order, $total_price, $address);
+    $stm = $mysqli->prepare("INSERT INTO orders(email, order_date, total_price, total_quantity, address, payment_method) VALUES(?, ?, ?, ?, ?, ?)");
+    $stm->bind_param("ssiiss", $email, $time_order, $total_price, $total_quantity, $address, $payment_method);
     $stm->execute();
     $order_id = $mysqli->insert_id;
     $stm->close();
