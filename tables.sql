@@ -3,7 +3,8 @@ CREATE TABLE customer (
     email VARCHAR(255) NOT NULL UNIQUE,
     fullname VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
     birthday int,
-    pwd VARCHAR(255) NOT NULL
+    pwd VARCHAR(255) NOT NULL,
+    total_bill INT DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE orders (

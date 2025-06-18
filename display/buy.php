@@ -44,11 +44,26 @@
         $new_quantity = $old_warehouse["quantity"] - $quantity;
         $new_sold = $old_warehouse["sold_count"] + 1;
 
-        $update = $mysqli->prepare("UPDATE product SET quantity = ?, sold_count = ? WHERE product_id = ?");
-        $update->bind_param("iis", $new_quantity, $new_sold, $product_id);
-        $update->execute();
-        $update->close();
+        $update_warehouse = $mysqli->prepare("UPDATE product SET quantity = ?, sold_count = ? WHERE product_id = ?");
+        $update_warehouse->bind_param("iis", $new_quantity, $new_sold, $product_id);
+        $update_warehouse->execute();
+        $update_warehouse->close();
     }
+
+    //Update customer
+    $stm = $mysqli->prepare("SELECT total_bill FROM customer WHERE email = ?");
+    $stm->bind_param("s", $email);
+    $stm->execute();
+    $stm->bind_result($old_bill);
+    $stm->fetch();
+    $stm->close();
+    $new_bill = $old_bill + 1;
+
+    $update_customer = $mysqli->prepare("UPDATE customer SET total_bill = ? WHERE email = ?");
+    $update_customer->bind_param("is", $new_bill, $email);
+    $update_customer->execute();
+    $update_customer->close();
+
     unset($_SESSION["cart"]);
     echo '<script> alert("Quý khách đã đặt hàng thành công. Xin cảm ơn."); window.location.href="./show_product.php"; </script>'
 ?>
