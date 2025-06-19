@@ -42,7 +42,7 @@
                     if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '<a href="./main.html">Trang chủ</a>';
                     else echo '<a href="./index.html">Trang chủ</a>';
                 ?>
-                <a href="./introduce.html">Giới thiệu</a>
+                <a href="./inquiry.html">Góp ý</a>
                 <a <?php if(isset($_SESSION["login"]) && $_SESSION["login"] === true ) echo 'href="./buy_product.php"';
                          else echo 'href="./login.html"'; ?> id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 50px;">
                     <i class="fa-solid fa-cart-shopping"></i>

@@ -73,7 +73,9 @@
                     if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '<a href="./main.html">Trang chủ</a>';
                     else echo '<a href="./index.html">Trang chủ</a>';
                 ?>
-                <a href="./introduce.html">Giới thiệu</a>
+                <a <?php
+                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo 'href="./inquiry.html"';
+                    else echo 'href="./login.html"'; ?>>Góp ý</a>
                 <a href="./show_product.php">Sản phẩm</a>
                 <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
             </nav>
@@ -114,7 +116,7 @@
                     <input class="inpt" name="detail_address" type="text" placeholder="Số nhà, tên đường, khu vực, ...">
                 </div>
                 <div class="account">
-                    <label class="lab" for="payment_method">Phương thức thanh toán: </label>
+                    <label class="lab">Phương thức thanh toán: </label>
                     <select name="payment_method" id="payment_method" onchange="toggleQR()">
                         <option value="Thanh toán khi nhận hàng" selected>Thanh toán khi nhận hàng</option>
                         <option id="bank" value="Chuyển khoản qua ngân hàng">Chuyển khoản qua ngân hàng</option>

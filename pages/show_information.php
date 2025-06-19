@@ -43,7 +43,7 @@
         </map>
         <nav>
           <a href="./main.html">Trang chủ</a>
-          <a href="">Giới thiệu</a>
+          <a href="./inquiry.html">Góp ý</a>
           <a href="./get_information.php">Cập nhật thông tin</a>
           <a href="./show_product.php">Sản phẩm</a>
           <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>

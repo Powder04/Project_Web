@@ -10,21 +10,24 @@
     $stm->execute();
     $rs = $stm->get_result();
 
-    if ($rs->num_rows > 0) {
+    if($rs->num_rows > 0) {
         $customer = $rs->fetch_assoc();
-        if (password_verify($pwd, $customer['pwd'])) {
-            $_SESSION['login'] = true;
-            $_SESSION['email'] = $customer['email'];
+        if(password_verify($pwd, $customer['pwd'])) {
+            // if($customer["status"] === 0) {
+                $_SESSION['login'] = true;
+                $_SESSION['email'] = $customer['email'];
 
-            if ($customer['role'] !== 'admin') {
-                echo '<script> alert("Đăng nhập thành công."); window.location.href="../pages/main.html"; </script>';
-            } else {
-                echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/index.html"; </script>';
-            }
-            exit();
+                if($customer['role'] !== 'admin') {
+                    echo '<script> alert("Đăng nhập thành công."); window.location.href="../pages/main.html"; </script>';
+                } else {
+                    echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/index.html"; </script>';
+                }
+                exit();
+            // }
+            // else echo "<script>alert('Tài khoản đã bị khóa.'); window.history.back(); </script>";
         }
     }
-
+    
     echo "<script>alert('Thông tin đăng nhập không đúng.'); window.history.back(); </script>";
 
     $stm->close();
