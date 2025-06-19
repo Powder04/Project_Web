@@ -1,6 +1,6 @@
 <?php
   session_start();
-  require_once('../mysqlConnect.php');
+  require_once('../includes/mysqlConnect.php');
 
   $stm = $mysqli->prepare('SELECT fullname, birthday FROM customer WHERE email = ?');
   $stm->bind_param('s', $_SESSION['email']);
@@ -17,8 +17,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thông tin khách hàng</title>
-    <link rel="icon" href="../img/icon.png" />
-    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="icon" href="../assets/images/icon.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -39,13 +39,13 @@
           usemap="#home"
         />
         <map name="home">
-          <area shape="rect" coords="0 0 943 263" href="../display/main.html" />
+          <area shape="rect" coords="0 0 943 263" href="./main.html" />
         </map>
         <nav>
-          <a href="../display/main.html">Trang chủ</a>
+          <a href="./main.html">Trang chủ</a>
           <a href="">Giới thiệu</a>
           <a href="./get_information.php">Cập nhật thông tin</a>
-          <a href="../display/show_product.php">Sản phẩm</a>
+          <a href="./show_product.php">Sản phẩm</a>
           <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
         </nav>
       </article>

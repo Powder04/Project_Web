@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đặt hàng</title>
-    <link rel="icon" href="../img/icon.png">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" href="../assets/images/icon.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -60,7 +60,7 @@
 <body>
     <header>
         <article class="navbar">
-            <img src="../img/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;" usemap="#home">
+            <img src="../assets/images/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;" usemap="#home">
             <map name="home">
                 <?php
                     session_start();
@@ -80,7 +80,7 @@
         </article>
     </header>
     <main style="margin: 0px 5px;" class="main-product">
-        <form action="./buy.php" method="post" style="display: flex; width: 1500px; background-color: white;">
+        <form action="../account/buy.php" method="post" style="display: flex; width: 1500px; background-color: white;">
             <div class="hero-container inf" style="flex: 1; padding: 20px;">
                 <h1 style="text-align: center;">Thông tin đặt hàng</h1>
                 <div class="account" style="margin-top: 30px;">
@@ -118,16 +118,16 @@
                     <select name="payment_method" id="payment_method" onchange="toggleQR()">
                         <option value="Thanh toán khi nhận hàng" selected>Thanh toán khi nhận hàng</option>
                         <option id="bank" value="Chuyển khoản qua ngân hàng">Chuyển khoản qua ngân hàng</option>
-                        <option id="momo" value="Thanh toán qua Momo">Chuyển khoản qua Momo</option>
+                        <option id="momo" value="Thanh toán qua Momo">Thanh toán qua Momo</option>
                     </select>
                 </div>
                 <div class="account" id="bankQR" style="display: none;">
                     <label class="lab">Quét mã để thanh toán </label>
-                    <img src="../img/bankQR.jpg" width="300px" style="margin-left: 218px; margin-top: -15px;">
+                    <img src="../assets/images/bankQR.jpg" width="300px" style="margin-left: 218px; margin-top: -15px;">
                 </div>
                 <div class="account" id="momoQR" style="display: none;">
                     <label class="lab">Quét mã để thanh toán </label>
-                    <img src="../img/momoQR.jpg" width="300px" style="margin-left: 218px; margin-top: -15px;">
+                    <img src="../assets/images/momoQR.jpg" width="300px" style="margin-left: 218px; margin-top: -15px;">
                 </div>
             </div>
             <div class="hero-container inf" style="flex: 1; padding: 20px; border-left: 1px solid #000;">
@@ -164,6 +164,6 @@
             <i class="fa-brands fa-cc-jcb"></i>
         </article>
     </footer>
-    <script src="../javascript/payment.js"></script>
+    <script src="../assets/javascript/payment.js"></script>
 </body>
 </html>

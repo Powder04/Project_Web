@@ -1,6 +1,6 @@
 function fetchUser(page = 1) {
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "./get_user.php", true);
+    xhr.open("POST", "../admin/get_user.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
         var res = JSON.parse(this.responseText);
@@ -65,7 +65,7 @@ function editUser(email, fullname, birthday) {
 
     if (newEmail && newFullname && newBirthday) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "./update_user.php", true);
+        xhr.open("POST", "../admin/update_user.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onload = function() {
             alert(this.responseText);
@@ -78,7 +78,7 @@ function editUser(email, fullname, birthday) {
 function deleteUser(email) {
     if (confirm("Bạn có chắc chắn muốn xóa khách hàng này?")) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "./delete_user.php", true);
+        xhr.open("POST", "../admin/delete_user.php", true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.onload = function () {
             alert(this.responseText);

@@ -1,19 +1,13 @@
-CREATE TABLE customer (
+CREATE TABLE customers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     fullname VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
     birthday int,
     pwd VARCHAR(255) NOT NULL,
-    total_bill INT DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-CREATE TABLE user_activity (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_email VARCHAR(255) NOT NULL,
-    activity_type VARCHAR(100) NOT NULL, -- VD: 'login', 'logout', 'view_product', 'purchase'
-    activity_detail TEXT,                -- Mô tả chi tiết nếu cần
-    activity_time DATETIME DEFAULT CURRENT_TIMESTAMP, -- Thời gian diễn ra
-    FOREIGN KEY (user_email) REFERENCES customer(email) ON DELETE CASCADE
+    total_bill INT DEFAULT 0,
+    status TINYINT DEFAULT 1,      -- 1 = active, 0 = blocked
+    role ENUM('user', 'admin') DEFAULT 'user',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE orders (

@@ -1,5 +1,5 @@
 <?php
-    require_once("../mysqlConnect.php");
+    require_once('../includes/mysqlConnect.php');
 
     $old_email = $_POST["old_email"] ?? null;
     $new_email = $_POST["email"] ?? null;

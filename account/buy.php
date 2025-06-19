@@ -1,6 +1,7 @@
 <?php
+// chỉnh pttt
     session_start();
-    require_once("../mysqlConnect.php");
+    require_once('../includes/mysqlConnect.php');
 
     date_default_timezone_set("Asia/Ho_Chi_Minh");
     $time_order = date("Y/m/d H:m:s");
@@ -68,5 +69,5 @@
     $update_customer->close();
 
     unset($_SESSION["cart"]);
-    echo '<script> alert("Quý khách đã đặt hàng thành công. Xin cảm ơn."); window.location.href="./show_product.php"; </script>'
+    echo '<script> alert("Quý khách đã đặt hàng thành công. Xin cảm ơn."); window.location.href="../pages/show_product.php"; </script>'
 ?>

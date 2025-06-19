@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
-    <link rel="icon" href="../img/icon.png">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" href="../assets/images/icon.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -29,7 +29,7 @@
 <body>
     <header style="background-color: white;">
         <article class="navbar">
-            <img src="../img/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;" usemap="#home">
+            <img src="../assets/images/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;" usemap="#home">
             <map name="home">
                 <?php
                     session_start(); 
@@ -44,7 +44,7 @@
                 ?>
                 <a href="./introduce.html">Giới thiệu</a>
                 <a <?php if(isset($_SESSION["login"]) && $_SESSION["login"] === true ) echo 'href="./buy_product.php"';
-                         else echo 'href="../account/login.html"'; ?> id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 50px;">
+                         else echo 'href="./login.html"'; ?> id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 50px;">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
                 </a>
@@ -96,6 +96,6 @@
             <i class="fa-brands fa-cc-jcb"></i>
         </article>
     </footer>
-    <script src="../javascript/product.js"></script>
+    <script src="../assets/javascript/product.js"></script>
 </body>
 </html>

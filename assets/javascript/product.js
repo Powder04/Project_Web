@@ -1,7 +1,7 @@
 function fetchProduct(page = 1) {
     var type = document.getElementById("typeProduct").value;
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../display/product.php", true);
+    xhttp.open("POST", "../api/product.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.onload = function() {
         var res = JSON.parse(this.responseText);
@@ -72,12 +72,12 @@ function fetchProduct(page = 1) {
 
 async function addToCart(product_id, button) {
     // Kiểm tra đăng nhập
-    var checkLogin = await fetch('../account/check_login.php');
+    var checkLogin = await fetch('../api/check_login.php');
     var loginStatus = await checkLogin.json();
 
     if (!loginStatus.login) {
         alert("Vui lòng đăng nhập để mua sản phẩm.");
-        window.location.href = "../account/login.html";
+        window.location.href = "../pages/login.html";
         return;
     }
 
@@ -106,7 +106,7 @@ async function addToCart(product_id, button) {
     }
 
     var dataToSend = {product_id, image, name, price, quantity, total_price};
-    var res = await fetch('../display/add_to_cart.php', {
+    var res = await fetch('../api/add_to_cart.php', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dataToSend)
@@ -118,7 +118,7 @@ async function addToCart(product_id, button) {
 }
 
 async function loadCart() {
-    var res = await fetch('../display/get_cart.php');
+    var res = await fetch('../api/get_cart.php');
     var data = await res.json();
 
     var dropdown = document.getElementById("cart-dropdown");
@@ -140,7 +140,7 @@ function removeItem(index, event) {
     event.stopPropagation();     
     event.preventDefault();   
 
-    fetch('../display/remove_from_cart.php', {
+    fetch('../api/remove_from_cart.php', {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `index=${index}`

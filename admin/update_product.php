@@ -1,5 +1,5 @@
 <?php
-    require_once('../mysqlConnect.php');
+    require_once('../includes/mysqlConnect.php');
 
     $productID = $_POST['productID'];
     $quantity = (int)$_POST['quantity'] ?? null;

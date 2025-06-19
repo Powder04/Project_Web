@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('../mysqlConnect.php');
+    require_once('../includes/mysqlConnect.php');
 
     $email = $_SESSION['email'];
     $fullname = $_POST["fullname"];
@@ -12,7 +12,7 @@
         $stm = $mysqli->prepare("UPDATE customer SET fullname = ?, birthday = ? WHERE email = ?");
         $stm->bind_param("sss", $fullname, $birthday, $email);
         $stm->execute();
-        echo "<script> alert('Thay đổi thông tin thành công.'); window.location.href = './show_information.php'; </script>";
+        echo "<script> alert('Thay đổi thông tin thành công.'); window.location.href = '../pages/show_information.php'; </script>";
         $stm->close();
         exit;
     } else {
@@ -36,7 +36,7 @@
         $stm = $mysqli->prepare("UPDATE customer SET fullname = ?, birthday = ?, pwd = ? WHERE email = ?");
         $stm->bind_param("ssss", $fullname, $birthday, $newpwd, $email);
         $stm->execute();
-        echo "<script>alert('Thay đổi thông tin thành công.');window.location.href = './show_information.php';</script>";
+        echo "<script> alert('Thay đổi thông tin thành công.');window.location.href = '../pages/show_information.php'; </script>";
         $stm->close();
         exit;
     }

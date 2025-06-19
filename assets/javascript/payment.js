@@ -47,7 +47,7 @@ function onDistrictChange() {
 }
 
 async function loadCart() {
-    var res = await fetch('../display/get_cart.php');
+    var res = await fetch('../api/get_cart.php');
     var data = await res.json();
 
     var dropdown = document.getElementById("cart");
@@ -77,7 +77,7 @@ function removeItem(index, event) {
     event.stopPropagation();     
     event.preventDefault();   
 
-    fetch('../display/remove_from_cart.php', {
+    fetch('../api/remove_from_cart.php', {
         method: "POST",
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `index=${index}`
@@ -85,7 +85,19 @@ function removeItem(index, event) {
 }
 
 function toggleQR() {
-  
+  var payment_method = document.getElementById("payment_method").value;
+  if(payment_method === "Chuyển khoản qua ngân hàng") {
+    document.getElementById("bankQR").style.display = "block";
+    document.getElementById("momoQR").style.display = "none";
+  }
+  else if(payment_method === "Thanh toán qua Momo") {
+    document.getElementById("momoQR").style.display = "block";
+    document.getElementById("bankQR").style.display = "none";
+  }
+  else {
+    document.getElementById("bankQR").style.display = "none";
+    document.getElementById("momoQR").style.display = "none";
+  }
 }
 
 document.getElementById("province").addEventListener("change", onProvinceChange);

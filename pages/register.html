@@ -4,22 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký</title>
-    <link rel="icon" href="../img/icon.png">
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="icon" href="../assets/images/icon.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <header>
         <article class="navbar">
-            <img src="../img/logoname.png" style="width: 240px; height: 60px;" usemap="#home">
+            <img src="../assets/images/logoname.png" style="width: 240px; height: 60px;" usemap="#home">
             <map name="home">
-                <area shape="rect" coords="0 0 943 263" href="../display/index.html">
+                <area shape="rect" coords="0 0 943 263" href="./index.html">
             </map>
             <nav>
-                <a href="../display/index.html">Trang chủ</a>
-                <a href="../display/introduce.html">Giới thiệu</a>
-                <a href="../display/show_product.php">Sản phẩm</a>
+                <a href="./index.html">Trang chủ</a>
+                <a href="./introduce.html">Giới thiệu</a>
+                <a href="./show_product.php">Sản phẩm</a>
             </nav>
         </article>
     </header>
@@ -27,7 +27,7 @@
     <main class="container">
         <fieldset>
             <h1 class="heading">Đăng ký</h1>
-            <form action="./register.php" method="post" onsubmit="return checkForm()">
+            <form action="../account/register.php" method="post" onsubmit="return checkForm()">
                 <article class="account">
                     <label class="lab">Họ và tên: </label>
                     <input type="text" class="inpt" name="fullname" required>
@@ -60,7 +60,7 @@
                 </article>
             </form>
         </fieldset>
-        <script src="../javascript/script.js"></script>
+        <script src="../assets/javascript/script.js"></script>
     </main>
 </body>
 </html>

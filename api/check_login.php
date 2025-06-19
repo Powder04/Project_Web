@@ -5,7 +5,7 @@
 
     if (isset($_SESSION['email'])) {
         $response['login'] = true;
-        $response['email'] = $_SESSION['email']; // Nếu cần
+        $response['email'] = $_SESSION['email'];
     }
 
     header('Content-Type: application/json');

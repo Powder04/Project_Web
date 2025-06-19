@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once('../mysqlConnect.php');
+    require_once('../includes/mysqlConnect.php');
 
     $email = $_POST['email'];
     $pwd = $_POST['pwd'];
@@ -16,10 +16,10 @@
             $_SESSION['login'] = true;
             $_SESSION['email'] = $customer['email'];
 
-            if ($customer['email'] !== 'adminkyu03@gmail.com') {
-                echo '<script> alert("Đăng nhập thành công."); window.location.href="../display/main.html"; </script>';
+            if ($customer['role'] !== 'admin') {
+                echo '<script> alert("Đăng nhập thành công."); window.location.href="../pages/main.html"; </script>';
             } else {
-                echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/admin.html"; </script>';
+                echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/index.html"; </script>';
             }
             exit();
         }
