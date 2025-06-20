@@ -237,6 +237,11 @@ tr:hover {
   text-align: right;
 }
 
+#product select {
+  padding: 3px;
+  margin: 0px 18px 0 0;
+}
+
 .pagination button,
 #product button,
 #back button {

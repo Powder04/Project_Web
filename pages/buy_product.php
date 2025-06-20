@@ -62,36 +62,33 @@
         <article class="navbar">
             <img src="../assets/images/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;" usemap="#home">
             <map name="home">
-                <?php
-                    session_start();
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '<area shape="rect" coords="0 0 943 263" href="./main.html">';
-                    else echo '<area shape="rect" coords="0 0 943 263" href="./index.html">';
-                ?>
+                <area shape="rect" coords="0 0 943 263" href="./index.php">
             </map>
             <nav>
-                <?php
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '<a href="./main.html">Trang chủ</a>';
-                    else echo '<a href="./index.html">Trang chủ</a>';
-                ?>
-                <a <?php
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo 'href="./inquiry.html"';
-                    else echo 'href="./login.html"'; ?>>Góp ý</a>
+                <a href="./index.php">Trang chủ</a>
+                <a href="./show_information.php">Thông tin khách hàng</a>
+                <a href="./get_information.php">Cập nhật thông tin</a>
                 <a href="./show_product.php">Sản phẩm</a>
+                <a href="./inquiry.php">Góp ý</a>
                 <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
             </nav>
         </article>
     </header>
     <main style="margin: 0px 5px;" class="main-product">
-        <form action="../account/buy.php" method="post" style="display: flex; width: 1500px; background-color: white;">
+        <form action="../account/buy.php" method="post" style="display: flex; width: 1300px; background-color: white;">
             <div class="hero-container inf" style="flex: 1; padding: 20px;">
                 <h1 style="text-align: center;">Thông tin đặt hàng</h1>
                 <div class="account" style="margin-top: 30px;">
-                    <label class="lab">Địa chỉ email: </label>
-                    <input class="inpt" value="<?php echo $_SESSION['email']; ?>" disabled>
+                    <label class="lab" for="email">Địa chỉ email: </label>
+                    <input name="email" class="inpt" value="<?php session_start(); echo $_SESSION['email']; ?>" disabled>
                 </div>
                 <div class="account">
-                    <label class="lab">Họ và tên khách hàng: </label>
+                    <label class="lab" for="name_customer">Họ và tên khách hàng: </label>
                     <input class="inpt" type="text" name="name_customer" required placeholder="Nhập vào họ và tên">
+                </div>
+                <div class="account">
+                    <label class="lab" for="tel_customer">Số điện thoại giao hàng: </label>
+                    <input class="inpt" type="tel" name="tel_customer" required placeholder="0123 456 789" pattern="0[0-9]{9}">
                 </div>
                 <div class="account">
                     <label class="lab" for="province">Tỉnh/Thành phố: </label>
@@ -116,7 +113,7 @@
                     <input class="inpt" name="detail_address" type="text" placeholder="Số nhà, tên đường, khu vực, ...">
                 </div>
                 <div class="account">
-                    <label class="lab">Phương thức thanh toán: </label>
+                    <label class="lab" for="payment_method">Phương thức thanh toán: </label>
                     <select name="payment_method" id="payment_method" onchange="toggleQR()">
                         <option value="Thanh toán khi nhận hàng" selected>Thanh toán khi nhận hàng</option>
                         <option id="bank" value="Chuyển khoản qua ngân hàng">Chuyển khoản qua ngân hàng</option>
@@ -153,7 +150,7 @@
             <h3>Thông tin liên lạc</h3>
             <article>
                 <p><i class="fa-solid fa-phone-volume"></i> +84 985 722 359</p>
-                <p><i class="fa-solid fa-envelope"></i> tiemlenkyu@gmail.com</p>
+                <p><i class="fa-solid fa-envelope"></i> tiemlencuakyu@gmail.com</p>
                 <p><i class="fa-solid fa-location-dot"></i> 32, đường số 9, phường A, quận B, thành phố C</p>
             </article>
         </article>

@@ -1,8 +1,12 @@
 function fetchProducts(page = 1) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/get_products.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onload = function () {
+    var typeProduct = document.getElementById("type").value;
+    var saleProduct = document.getElementById("sale").value;
+    var priceProduct = document.getElementById("price").value;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../admin/get_products.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.onload = function () {
         var res = JSON.parse(this.responseText);
         var tbody = document.getElementById('productTable');
         tbody.innerHTML = '';
@@ -20,9 +24,7 @@ function fetchProducts(page = 1) {
                         <button onclick="editProduct('${product.product_id}', ${product.quantity}, ${product.price})" class="update"><i class="fa-solid fa-pen"></i></button>
                         <button onclick="deleteProduct('${product.product_id}')" class="delete"><i class="fa-solid fa-trash"></i></button>
                     </td>
-                </tr>
-            `;
-        });
+                </tr>`;});
 
         var pag = document.getElementById('pagination');
         pag.innerHTML = '';
@@ -58,7 +60,17 @@ function fetchProducts(page = 1) {
             pag.innerHTML += `<button onclick="fetchProducts(${res.page + 1})"><i class="fa-solid fa-arrow-right"></i></button>`;
         }
     };
-    xhr.send(`page=${page}`);
+    var postData = `page=${page}`;
+    if (typeProduct !== "Tất cả") {
+        postData += `&typeProduct=${encodeURIComponent(typeProduct)}`;
+    }
+    if (saleProduct !== "Không") {
+        postData += `&saleProduct=${encodeURIComponent(saleProduct)}`;
+    }
+    if (priceProduct !== "Không") {
+        postData += `&priceProduct=${encodeURIComponent(priceProduct)}`;
+    }
+    xhttp.send(postData);
 }
 
 function editProduct(productID, currentQuantity, currentPrice) {
@@ -66,27 +78,27 @@ function editProduct(productID, currentQuantity, currentPrice) {
     var newPrice = prompt("Nhập giá mới:", currentPrice);
 
     if ((newQuantity !== null && !isNaN(newQuantity)) && (newPrice !== null && !isNaN(newPrice))) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/update_product.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "../admin/update_product.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.onload = function () {
             alert(this.responseText);
             fetchProducts();
         };
-        xhr.send(`productID=${productID}&quantity=${newQuantity}&price=${newPrice}`);
+        xhttp.send(`productID=${productID}&quantity=${newQuantity}&price=${newPrice}`);
     }
 }
 
 function deleteProduct(productID) {
     if (confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/delete_product.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "../admin/delete_product.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.onload = function () {
             alert(this.responseText);
             fetchProducts();
         };
-        xhr.send(`productID=${productID}`);
+        xhttp.send(`productID=${productID}`);
     }
 }
 

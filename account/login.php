@@ -13,18 +13,18 @@
     if($rs->num_rows > 0) {
         $customer = $rs->fetch_assoc();
         if(password_verify($pwd, $customer['pwd'])) {
-            // if($customer["status"] === 0) {
+            if($customer["status"] === 1) {
                 $_SESSION['login'] = true;
                 $_SESSION['email'] = $customer['email'];
 
                 if($customer['role'] !== 'admin') {
-                    echo '<script> alert("Đăng nhập thành công."); window.location.href="../pages/main.html"; </script>';
+                    echo '<script> alert("Đăng nhập thành công."); window.location.href="../pages/index.php"; </script>';
                 } else {
                     echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/index.html"; </script>';
                 }
                 exit();
-            // }
-            // else echo "<script>alert('Tài khoản đã bị khóa.'); window.history.back(); </script>";
+            }
+            else echo "<script>alert('Tài khoản đã bị khóa.'); window.history.back(); </script>";
         }
     }
     

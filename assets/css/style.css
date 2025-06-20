@@ -43,7 +43,7 @@ footer {
   margin-top: 10px;
   padding: 20px 10px;
   align-items: flex-start;
-  background-color: #8fee8f;
+  background-color: rgb(110, 173, 107);
 }
 
 .container {
@@ -371,7 +371,7 @@ footer i {
   border-bottom: none;
 }
 
-.cart-item button {
+.cart-item .del {
   background: #e74c3c;
   color: white;
   border: none;
@@ -381,7 +381,7 @@ footer i {
   font-size: 12px;
 }
 
-.cart-item button:hover {
+.cart-item .del:hover {
   background: #c0392b;
 }
 

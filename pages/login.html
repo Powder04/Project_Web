@@ -14,10 +14,10 @@
       <article class="navbar">
         <img src="../assets/images/logoname.png" style="width: 240px; height: 60px" usemap="#home"/>
         <map name="home">
-          <area shape="rect" coords="0 0 943 263" href="./index.html" />
+          <area shape="rect" coords="0 0 943 263" href="./index.php" />
         </map>
         <nav>
-          <a href="./index.html">Trang chủ</a>
+          <a href="./index.php">Trang chủ</a>
           <a href="./show_product.php">Sản phẩm</a>
         </nav>
       </article>
@@ -28,11 +28,11 @@
         <h1 class="heading">Đăng nhập</h1>
         <form action="../account/login.php" method="post">
           <article class="account">
-            <label class="lab">Email: </label>
+            <label class="lab" for="email">Email: </label>
             <input type="email" class="inpt" name="email" required />
           </article>
           <article class="account pwd-container">
-            <label class="lab">Mật khẩu: </label>
+            <label class="lab" for="pwd">Mật khẩu: </label>
             <input type="password" id="password" name="pwd" class="inpt" required />
             <span class="toggle-icon" id="toggleIcon" onclick="togglePassword()">
                 <i class="fa-solid fa-eye-slash"></i>
@@ -44,24 +44,11 @@
           </article>
           <p style="text-align: center; padding-top: 15px">Hoặc</p>
           <article class="account a-account">
-            <a href="../account/register.html"> Đăng ký</a>
+            <a href="./register.html"> Đăng ký</a>
           </article>
         </form>
       </fieldset>
     </main>
-    <script>
-      function togglePassword() {
-        const passwordInput = document.getElementById("password");
-        const icon = document.getElementById("toggleIcon");
-
-        if (passwordInput.type === "password") {
-          passwordInput.type = "text";
-          icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
-        } else {
-          passwordInput.type = "password";
-          icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
-        }
-      }
-    </script>
+    <script src="../assets/javascript/script.js"></script>
   </body>
 </html>

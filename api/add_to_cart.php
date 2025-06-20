@@ -21,6 +21,7 @@
             "name" => $data["name"],
             "price" => $data["price"],
             "quantity" => $data["quantity"],
+            "stock" => $data["stock"],
             "total_price" => $data["total_price"],
             "image" => $data["image"]
         ];

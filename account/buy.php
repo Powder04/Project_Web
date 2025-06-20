@@ -7,6 +7,7 @@
     $time_order = date("Y/m/d H:m:s");
     $email = $_SESSION["email"];
     $name_customer = $_POST["name_customer"];
+    $tel_customer = $_POST["tel_customer"];
     $province = $_POST["province"];
     $district = $_POST["district"];
     $ward = $_POST["ward"];
@@ -22,8 +23,8 @@
         }
     }
 
-    $stm = $mysqli->prepare("INSERT INTO orders(email, order_date, total_price, total_quantity, address, payment_method) VALUES(?, ?, ?, ?, ?, ?)");
-    $stm->bind_param("ssiiss", $email, $time_order, $total_price, $total_quantity, $address, $payment_method);
+    $stm = $mysqli->prepare("INSERT INTO orders(email, phone, order_date, total_price, total_quantity, address, payment_method) VALUES(?, ?, ?, ?, ?, ?, ?)");
+    $stm->bind_param("sssiiss", $email, $tel_customer, $time_order, $total_price, $total_quantity, $address, $payment_method);
     $stm->execute();
     $order_id = $mysqli->insert_id;
     $stm->close();

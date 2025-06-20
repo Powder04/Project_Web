@@ -14,10 +14,10 @@
         <article class="navbar">
             <img src="../assets/images/logoname.png" style="width: 240px; height: 60px;" usemap="#home">
             <map name="home">
-                <area shape="rect" coords="0 0 943 263" href="./index.html">
+                <area shape="rect" coords="0 0 943 263" href="./index.php">
             </map>
             <nav>
-                <a href="./index.html">Trang chủ</a>
+                <a href="./index.php">Trang chủ</a>
                 <a href="./show_product.php">Sản phẩm</a>
             </nav>
         </article>
@@ -28,25 +28,25 @@
             <h1 class="heading">Đăng ký</h1>
             <form action="../account/register.php" method="post" onsubmit="return checkForm()">
                 <article class="account">
-                    <label class="lab">Họ và tên: </label>
+                    <label class="lab" for="fullname">Họ và tên: </label>
                     <input type="text" class="inpt" name="fullname" required>
                 </article>
                 <article class="account">
-                    <label class="lab">Địa chỉ email: </label>
+                    <label class="lab" for="email">Địa chỉ email: </label>
                     <input type="email" class="inpt" name="email" required>
                 </article>
                 <article class="account">
-                    <label class="lab">Năm sinh: </label>
+                    <label class="lab" for="birthday">Năm sinh: </label>
                     <select name="birthday" id="birth" style="padding: 3px;">
                         <option value="none">--Chọn năm sinh--</option>
                     </select>
                 </article>
                 <article class="account">
-                    <label class="lab">Mật khẩu: </label>
+                    <label class="lab" for="pwd">Mật khẩu: </label>
                     <input type="password" minlength="8" name="pwd" class="inpt" id="pwd" required>
                 </article>
                 <article class="account">
-                    <label class="lab">Nhập lại mật khẩu: </label>
+                    <label class="lab" for="repwd">Nhập lại mật khẩu: </label>
                     <input type="password" name="repwd" class="inpt" id="repwd" required>
                 </article>
                 <article class="account btn-account">

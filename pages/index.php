@@ -8,26 +8,9 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        header {
-            height: 70px;
-            width: 100vw;
-            padding: 0 5px;
-            position: fixed;
-            z-index: 100;
-            box-shadow: 1px 1px 15px rgba(115, 255, 111, 0.825);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
 </head>
 <body>
-    <header style="background-color: white;">
+    <header>
         <article class="navbar">
             <img src="../assets/images/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;" usemap="#home">
             <map name="home">
@@ -41,51 +24,52 @@
                     <a href="./show_information.php">Thông tin khách hàng</a>
                     <a href="./get_information.php">Cập nhật thông tin</a>
                     <a href="./inquiry.php">Góp ý</a>';
-                ?>  
-                <a <?php if(isset($_SESSION["login"]) && $_SESSION["login"] === true ) echo 'href="./buy_product.php"';
-                         else echo 'href="./login.html"'; ?> id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 15px;">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
-                </a>
+                ?>
+                <a href="./show_product.php">Sản phẩm</a>
                 <?php
                     if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '
+                    <a href="./buy_product.php" id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()"
+                        style="margin-right: 15px;"><i class="fa-solid fa-cart-shopping"></i>
+                        <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
+                    </a>
                     <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>';
                     else echo '<a href="./login.html" style="background-color: white; border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: rgb(40, 167, 69); margin-right: 5px;">Đăng nhập</a>';
                 ?>
             </nav>
         </article>
+        <article style="margin: 0px 5px;">
+            <img src="../assets/images/background.png" style="height: 720px; width: 100%;">
+        </article>
     </header>
-    <main style="margin: 0px 5px;" class="main-product">
-        <div class="hero-container">
-            <div style="margin-top: 30px; margin-left: auto; display: flex;">
-                <label style="margin: 2px 5px 0 0;" for="typeProduct">Loại sản phẩm: </label>
-                <select id="typeProduct" name="typeProduct" onchange="fetchProduct(1)" style="padding: 3px; margin-right: 15px;">
-                    <option value="Tất cả" selected>Tất cả</option>
-                    <option value="Balo">Balo</option>
-                    <option value="Móc khóa">Móc khóa</option>
-                    <option value="Phụ kiện tóc">Phụ kiện tóc</option>
-                    <option value="Túi">Túi</option>
-                    <option value="Combo">Combo</option>
-                    <option value="Khác">Khác</option>
-                </select>
-                <label style="margin: 2px 5px 0 0;" for="saleProduct">Lượt bán: </label>
-                <select name="sale" id="saleProduct" onchange="fetchProduct(1)" style="padding: 3px; margin-right: 15px;">
-                    <option value="Không" selected>Không</option>
-                    <option value="ASC">Thấp đến cao</option>
-                    <option value="DESC">Cao đến thấp</option>
-                </select>
-                <label style="margin: 2px 5px 0 0;" for="price">Giá bán: </label>
-                <select name="price" id="priceProduct" onchange="fetchProduct(1)" style="padding: 3px;">
-                    <option value="Không" selected>Không</option>
-                    <option value="ASC">Thấp đến cao</option>
-                    <option value="DESC">Cao đến thấp</option>
-                </select>
-            </div>
-            <div class="hero-container1"></div>
-            <div id="pagination-product"></div>
-        </div>
+    <main style="margin: 0px 5px;" >
+        <article>
+            <section class="hero">
+                <div class="hero-content hero-content-1">
+                    <img src="../uploads/HA001.jpg">
+                    <h1>Phụ kiện tóc</h1>
+                </div>
+                <div class="hero-content hero-content-1">
+                    <img src="../uploads/B007.jpg">
+                    <h1>Túi đựng AirPods</h1>
+                </div>
+                <div class="hero-content hero-content-1">
+                    <img src="../uploads/KC002.jpg">
+                    <h1>Móc Khóa</h1>
+                </div>
+            </section>
+        </article>
+        <article>
+            <section>
+                <div class="container-title">
+                    <h3 class="section-title">
+                        <b></b><span>Sản phẩm nổi bật</span><b></b>
+                    </h3>
+                </div>
+                <div class="hero" id="top_product"></div>
+            </section>
+        </article>
     </main>
-    <footer style="margin: 70px 5px 0px 5px;">
+    <footer>
         <article style="margin-left: 5px;">
             <h3>Mạng xã hội</h3>
             <article>
@@ -114,5 +98,6 @@
         </article>
     </footer>
     <script src="../assets/javascript/product.js"></script>
+    <script src="../assets/javascript/push_top_product.js"></script>
 </body>
 </html>

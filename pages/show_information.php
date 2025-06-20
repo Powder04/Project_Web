@@ -13,60 +13,78 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thông tin khách hàng</title>
-    <link rel="icon" href="../assets/images/icon.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <style>
-      span {
-        padding: 4.5px;
-      }
-      .lab {
-        width: 45%;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <article class="navbar">
-        <img
-          src="../img/logoname.png"
-          style="width: 240px; height: 60px"
-          usemap="#home"
-        />
-        <map name="home">
-          <area shape="rect" coords="0 0 943 263" href="./main.html" />
-        </map>
-        <nav>
-          <a href="./main.html">Trang chủ</a>
-          <a href="./inquiry.html">Góp ý</a>
-          <a href="./get_information.php">Cập nhật thông tin</a>
-          <a href="./show_product.php">Sản phẩm</a>
-          <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
-        </nav>
-      </article>
-    </header>
 
-    <main class="container">
-      <fieldset>
-        <h1 class="heading">Thông tin khách hàng</h1>
-          <article class="account">
-            <label class="lab"><b>Họ và tên: </b></label>
-            <span><?php echo $customer['fullname'] ?></span>
-          </article>
-          <article class="account">
-            <label class="lab"><b>Địa chỉ email: </b></label>
-            <span><?php echo $_SESSION['email']; ?></span>
-          </article>
-          <article class="account" style="margin-bottom: 25px;">
-            <label class="lab"><b>Năm sinh: </b></label>
-            <span><?php echo $customer['birthday'] ?></span>
-          </article>
-      </fieldset>
-    </main>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thông tin khách hàng</title>
+  <link rel="icon" href="../assets/images/icon.png">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <style>
+    span {
+      padding: 4.5px;
+    }
+    .lab {
+      width: 45%;
+    }
+    header {
+      height: 70px;
+      width: 100vw;
+      padding: 0 5px;
+      background-color: white;
+      position: fixed;
+      z-index: 100;
+      box-shadow: 1px 1px 15px rgba(115, 255, 111, 0.825);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <article class="navbar">
+      <img src="../assets/images/logoname.png" style="width: 240px; height: 60px" usemap="#home" />
+      <map name="home">
+        <area shape="rect" coords="0 0 943 263" href="./index.php" />
+      </map>
+      <nav>
+        <a href="./index.php">Trang chủ</a>
+        <a href="./get_information.php">Cập nhật thông tin</a>
+        <a href="./show_product.php">Sản phẩm</a>
+        <a href="./inquiry.php">Góp ý</a>
+        <a href="./buy_product.php" id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 15px;">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
+        </a>
+        <a href="../account/logout.php"
+          style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng
+          xuất</a>
+      </nav>
+    </article>
+  </header>
+
+  <main class="container">
+    <fieldset>
+      <h1 class="heading">Thông tin khách hàng</h1>
+      <article class="account">
+        <label class="lab"><b>Họ và tên: </b></label>
+        <span><?php echo $customer['fullname'] ?></span>
+      </article>
+      <article class="account">
+        <label class="lab"><b>Địa chỉ email: </b></label>
+        <span><?php echo $_SESSION['email']; ?></span>
+      </article>
+      <article class="account" style="margin-bottom: 25px;">
+        <label class="lab"><b>Năm sinh: </b></label>
+        <span><?php echo $customer['birthday'] ?></span>
+      </article>
+    </fieldset>
+  </main>
+  <script src="../assets/javascript/product.js"></script>
+</body>
+
 </html>

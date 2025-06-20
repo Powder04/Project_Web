@@ -5,7 +5,13 @@
     $limit = 20;
     $offset = ($page - 1) * $limit;
 
-    $data = [];
+    $orderBy = [];
+    if (!empty($_POST["sale"]) && $_POST["sale"] !== "Không") $orderBy[] = "p.sold_count " . $_POST["sale"];
+    if (!empty($_POST["price"]) && $_POST["price"] !== "Không") $orderBy[] = "p.price " . $_POST["price"];
+
+    if (empty($orderBy)) $orderBy[] = "p.product_id DESC";
+    
+    $orderBySql = " ORDER BY " . implode(", ", $orderBy);
 
     if (empty($_POST["type"]) || $_POST["type"] === "Tất cả") {
         // Đếm tổng số
@@ -13,11 +19,10 @@
         $total = $rs->fetch_row()[0];
         $total_pages = ceil($total / $limit);
 
-        $sql = "SELECT p.product_id, p.name, p.price, p.quantity, p.sold_count, i.mime_type, TO_BASE64(i.image_data) AS image_data
-                FROM product p
+        $sql = "SELECT p.product_id, p.name, p.price, p.quantity, p.sold_count, i.mime_type, TO_BASE64(i.image_data) 
+                AS image_data FROM product p
                 LEFT JOIN images i ON p.product_id = i.product_id
-                WHERE p.quantity > 0
-                ORDER BY p.price ASC LIMIT ? OFFSET ?";
+                WHERE p.quantity > 0 $orderBySql LIMIT ? OFFSET ?";
         $stm = $mysqli->prepare($sql);
         $stm->bind_param("ii", $limit, $offset);
     } 
@@ -32,11 +37,11 @@
 
         $total_pages = ceil($total / $limit);
 
-        $sql = "SELECT p.product_id, p.name, p.price, p.quantity, p.sold_count, i.mime_type, TO_BASE64(i.image_data) AS image_data
-                FROM product p
+        $sql = "SELECT p.product_id, p.name, p.price, p.quantity, p.sold_count, i.mime_type, TO_BASE64(i.image_data) 
+                AS image_data FROM product p
                 LEFT JOIN images i ON p.product_id = i.product_id
                 WHERE p.quantity > 0 AND p.category = ?
-                ORDER BY p.price ASC LIMIT ? OFFSET ?";
+                $orderBySql LIMIT ? OFFSET ?";
         $stm = $mysqli->prepare($sql);
         $stm->bind_param("sii", $type, $limit, $offset);
     }
@@ -44,6 +49,7 @@
     $stm->execute();
     $result = $stm->get_result();
 
+    $data = [];
     while ($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
@@ -57,6 +63,8 @@
         'page' => $page,
         'limit' => $limit,
         'total_pages' => $total_pages,
-        'type' => $_POST["type"] ?? "Tất cả"
+        'type' => $_POST["type"] ?? "Tất cả",
+        'sale' => $_POST["sale"] ?? "Không",
+        'price' => $_POST["price"] ?? "Không"
     ]);
 ?>

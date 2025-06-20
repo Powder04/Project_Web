@@ -51,26 +51,45 @@ async function loadCart() {
     var data = await res.json();
 
     var dropdown = document.getElementById("cart");
-    if(data.length === 0) {
+
+    if (data.length === 0) {
         dropdown.innerHTML = "<div style='margin-top: 30px;'><p style='text-align: center;'>Giỏ hàng trống</p></div>";
     } else {
-        var x = 0;
-        var bill = data.map((item, index) => {x += parseInt(item.total_price);});
-        dropdown.innerHTML = data.map((item, index) =>
-                `<div class="cart-item">
-                    <p>${index+1}</p>
+        var totalBill = 0;
+        dropdown.innerHTML = data.map((item, index) => {
+            totalBill += parseInt(item.total_price);
+
+            return `
+                <div class="cart-item">
+                    <p>${index + 1}</p>
                     <p><img style="width: 60px;" src="${item.image}"/></p>
                     <p>${item.name}</p>
-                    <p>x${item.quantity}</p>
+                    <input style="text-align: center;" type="number" min="1" max="${item.stock}" 
+                           onchange="changeQuantity(${index}, this.value, ${item.stock})" value="${item.quantity}">
                     <p>${parseInt(item.total_price).toLocaleString()}VNĐ</p>
-                    <button onclick="removeItem(${index}, event)">Xóa</button>
-                </div>`).join('');
-        dropdown.innerHTML += 
-                `<div id="pay">
-                    <h3>Tổng thanh toán: ${x.toLocaleString()}VNĐ</h3>
-                    <button type="submit">Thanh Toán</button>
-                </div>`;
+                    <button type="button" class="del" onclick="removeItem(${index}, event)">Xóa</button>
+                </div>`;}).join('');
+
+        dropdown.innerHTML += `
+            <div id="pay">
+                <h3>Tổng thanh toán: ${totalBill.toLocaleString()}VNĐ</h3>
+                <button type="submit">Thanh Toán</button>
+            </div>`;
     }
+}
+
+async function changeQuantity(index, newQuantity, maxStock) {
+    newQuantity = parseInt(newQuantity);
+
+    if (newQuantity < 1) newQuantity = 1;
+    if (newQuantity > maxStock) newQuantity = maxStock;
+
+    await fetch('../api/update_cart.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ index: index, quantity: newQuantity })
+    });
+    loadCart();
 }
 
 function removeItem(index, event) {

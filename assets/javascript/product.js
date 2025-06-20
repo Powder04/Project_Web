@@ -1,5 +1,8 @@
 function fetchProduct(page = 1) {
     var type = document.getElementById("typeProduct").value;
+    var sale = document.getElementById("saleProduct").value;
+    var price = document.getElementById("priceProduct").value;
+
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "../api/product.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -22,10 +25,10 @@ function fetchProduct(page = 1) {
                     </div>
                     <div class="quantity">
                         <label>Số lượng: </label>
-                        <input type="number" min="0" max="50" value="0">
+                        <input type="number" min="0" max="${product.quantity}" value="0">
                     </div>
                     <div class="btn-product">
-                        <button onclick="addToCart('${product.product_id}', this)">Mua sản phẩm</button>
+                        <button onclick="addToCart('${product.product_id}', this)">Thêm vào giỏ hàng</button>
                     </div>
                 </div>
             `;
@@ -67,10 +70,16 @@ function fetchProduct(page = 1) {
     if (type !== "Tất cả") {
         postData += `&type=${encodeURIComponent(type)}`;
     }
+    if (sale !== "Không") {
+        postData += `&sale=${encodeURIComponent(sale)}`;
+    }
+    if (price !== "Không") {
+        postData += `&price=${encodeURIComponent(price)}`;
+    }
     xhttp.send(postData);
 }
 
-async function addToCart(product_id, button) {
+async function addToCart(product_id, button) { 
     // Kiểm tra đăng nhập
     var checkLogin = await fetch('../api/check_login.php');
     var loginStatus = await checkLogin.json();
@@ -105,7 +114,7 @@ async function addToCart(product_id, button) {
         return;
     }
 
-    var dataToSend = {product_id, image, name, price, quantity, total_price};
+    var dataToSend = {product_id, image, name, price, quantity, stock, total_price};
     var res = await fetch('../api/add_to_cart.php', {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
@@ -131,7 +140,7 @@ async function loadCart() {
                     <p>${item.name}</p>
                     <p>x${item.quantity}</p>
                     <p>${parseInt(item.total_price).toLocaleString()}VNĐ</p>
-                    <button onclick="removeItem(${index}, event)">Xóa</button>
+                    <button class="del" onclick="removeItem(${index}, event)">Xóa</button>
                 </div>`).join('');
     }
 }
@@ -157,7 +166,7 @@ function showCartDropdown() {
 function hideCartDropdown() {
     hideTimeout = setTimeout(() => {
         document.getElementById("cart-dropdown").style.display = "none";
-    }, 5);
+    }, 300);
 }
 
 function cancelHide() {
@@ -166,5 +175,6 @@ function cancelHide() {
 
 window.onload = function () {
     fetchProduct();
+    loadCart();
 };
-document.addEventListener("DOMContentLoaded", loadCart);
+document.addEventListener("DOMContentLoaded", );
