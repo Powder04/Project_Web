@@ -2,7 +2,7 @@
   session_start();
   require_once('../includes/mysqlConnect.php');
 
-  $stm = $mysqli->prepare('SELECT fullname, birthday FROM customer WHERE email = ?');
+  $stm = $mysqli->prepare('SELECT fullname, birthday FROM user WHERE email = ?');
   $stm->bind_param('s', $_SESSION['email']);
   $stm->execute();
   $rs = $stm->get_result();
@@ -60,7 +60,7 @@
           <i class="fa-solid fa-cart-shopping"></i>
           <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
         </a>
-        <a href="../account/logout.php"
+        <a href="../includes/logout.php"
           style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng
           xuất</a>
       </nav>

@@ -49,7 +49,7 @@
                 </a>
                 <?php
                     if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '
-                    <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>';
+                    <a href="../includes/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>';
                     else echo '<a href="./login.html" style="background-color: white; border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: rgb(40, 167, 69); margin-right: 5px;">Đăng nhập</a>';
                 ?>
             </nav>

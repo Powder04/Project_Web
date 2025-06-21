@@ -1,4 +1,4 @@
-CREATE TABLE customer (
+CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     fullname VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE orders (
         'Thành công',
         'Hủy đơn'
     ) NOT NULL DEFAULT 'Đang xử lý',
-    FOREIGN KEY (email) REFERENCES customer(email)
+    FOREIGN KEY (email) REFERENCES user(email)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -71,7 +71,7 @@ CREATE TABLE feedback (
     message TEXT NOT NULL,
     submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     status ENUM('Đang xử lý', 'Đã xử lý') DEFAULT 'Đang xử lý',
-    FOREIGN KEY (email) REFERENCES customer(email)
+    FOREIGN KEY (email) REFERENCES user(email)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

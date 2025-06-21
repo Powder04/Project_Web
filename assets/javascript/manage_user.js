@@ -1,8 +1,8 @@
 function fetchUser(page = 1) {
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../admin/get_user.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onload = function () {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../admin/get_user.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.onload = function () {
         var res = JSON.parse(this.responseText);
         var tbody = document.getElementById('userTable');
         tbody.innerHTML = '';
@@ -10,12 +10,23 @@ function fetchUser(page = 1) {
             tbody.innerHTML += `
                 <tr>
                     <td>${(res.page - 1) * res.limit + index + 1}</td>
-                    <td>${user.email}</td>
                     <td>${user.fullname}</td>
+                    <td>${user.email}</td>
                     <td>${user.birthday}</td>
+                    <td>
+                        <input onclick="updateUser('${user.email}', 'status', 1)" type="radio" name="status" value="1" ${user.status == 1 ? 'checked' : ''}> Active
+                        <input onclick="updateUser('${user.email}', 'status', 0)" type="radio" name="status" value="0" ${user.status == 0 ? 'checked' : ''}> Blocked
+                    </td>
+                    <td>
+                        <select onchange="updateUser('${user.email}', 'role', this.value)" name="role">
+                            <option value="user" ${user.role === 'user' ? 'selected' : ''}>User</option>
+                            <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
+                        </select>
+                    </td>
+                    <td>${new Date(user.created_at).toLocaleDateString('vi-VN')}</td>
                     <td>${user.total_bill}</td>
                     <td>
-                        <button onclick="editUser('${user.email}', '${user.fullname}', ${user.birthday})" class="update"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="editUser('${user.email}')" class="update"><i class="fa-solid fa-pen"></i></button>
                         <button onclick="deleteUser('${user.email}')" class="delete"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>`;
@@ -55,36 +66,46 @@ function fetchUser(page = 1) {
             pag.innerHTML += `<button onclick="fetchUser(${res.page + 1})"><i class="fa-solid fa-arrow-right"></i></button>`;
         }
     };
-    xhr.send(`page=${page}`);
+    xhttp.send(`page=${page}`);
 }
 
-function editUser(email, fullname, birthday) {
-    var newEmail = prompt("Nhập email mới:", email);
-    var newFullname = prompt("Nhập họ và tên mới:", fullname);
-    var newBirthday = prompt("Nhập năm sinh mới:", birthday);
-
-    if (newEmail && newFullname && newBirthday) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/update_user.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = function() {
-            alert(this.responseText);
-            fetchUser();
-        };
-        xhr.send(`old_email=${encodeURIComponent(email)}&email=${encodeURIComponent(newEmail)}&fullname=${encodeURIComponent(newFullname)}&birthday=${encodeURIComponent(newBirthday)}`);
+function updateUser(email, field, value) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../admin/update_field_user.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.onload = function() {
+        alert("Cập nhật thành công.");
     }
+    xhttp.send(`email=${encodeURIComponent(email)}&field=${field}&value=${encodeURIComponent(value)}`);
 }
+
+// function editUser(email) {
+//     var newEmail = prompt("Nhập email mới:", email);
+//     var newFullname = prompt("Nhập họ và tên mới:", fullname);
+//     var newBirthday = prompt("Nhập năm sinh mới:", birthday);
+
+//     if (newEmail && newFullname && newBirthday) {
+//         var xhttp = new XMLHttpRequest();
+//         xhttp.open("POST", "../admin/update_user.php", true);
+//         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//         xhttp.onload = function() {
+//             alert(this.responseText);
+//             fetchUser();
+//         };
+//         xhttp.send(`old_email=${encodeURIComponent(email)}&email=${encodeURIComponent(newEmail)}&fullname=${encodeURIComponent(newFullname)}&birthday=${encodeURIComponent(newBirthday)}`);
+//     }
+// }
 
 function deleteUser(email) {
     if (confirm("Bạn có chắc chắn muốn xóa khách hàng này?")) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "../admin/delete_user.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "../admin/delete_user.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.onload = function () {
             alert(this.responseText);
             fetchUser();
         };
-        xhr.send(`email=${encodeURIComponent(email)}`);
+        xhttp.send(`email=${encodeURIComponent(email)}`);
     }
 }
 

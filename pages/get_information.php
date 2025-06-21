@@ -3,7 +3,7 @@
   require_once('../includes/mysqlConnect.php');
 
   $email = $_SESSION['email'];
-  $stm = $mysqli->prepare('SELECT * FROM customer WHERE email = ?');
+  $stm = $mysqli->prepare('SELECT * FROM user WHERE email = ?');
   $stm->bind_param('s', $email);
   $stm->execute();
   $res = $stm->get_result();
@@ -56,7 +56,7 @@
           <i class="fa-solid fa-cart-shopping"></i>
           <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
         </a>
-        <a href="../account/logout.php"
+        <a href="../includes/logout.php"
           style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng
           xuất</a>
       </nav>
@@ -89,11 +89,11 @@
         </article>
         <article class="account">
           <label class="lab" for="pwd">Mật khẩu hiện tại: </label>
-          <input type="password" minlength="8" name="pwd" class="inpt" id="pwd">
+          <input type="password" minlength="8" name="pwd" class="inpt" id="pwd" placeholder="Để trống nếu không đổi">
         </article>
         <article class="account">
           <label class="lab" for="newpwd">Mật khẩu mới: </label>
-          <input type="password" minlength="8" name="newpwd" class="inpt" id="newpwd">
+          <input type="password" minlength="8" name="newpwd" class="inpt" id="newpwd" placeholder="Để trống nếu không đổi">
         </article>
         <article class="account btn-account" style="margin: 25px 0px 25px 0px;">
           <button type="reset" class="btn btn-1">Hủy</button>

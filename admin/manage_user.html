@@ -13,7 +13,7 @@
         <article class="navbar">
             <img src="../assets/images/logoname.png" style="width: 240px; height: 60px; margin-left: 5px;">
             <nav>
-                <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
+                <a href="../includes/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>
             </nav>
         </article>
     </header>
@@ -51,14 +51,20 @@
             </nav>
         </div>
         <div class="main">
+            <div id="product">
+                <button type="button" style="padding: 8px 20px;" onclick="window.location.href='./form_user.php';">+</button>
+            </div>
             <div class="box-container">
                 <table>
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Email khách hàng</th>
-                            <th>Họ tên</th>
+                            <th>Họ và tên</th>
+                            <th>Email</th>
                             <th>Năm sinh</th>
+                            <th>Trạng thái</th>
+                            <th>Phân quyền</th>
+                            <th>Ngày tạo</th>
                             <th>Số lượng đơn</th>
                             <th>Tùy chỉnh</th>
                         </tr>

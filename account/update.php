@@ -9,14 +9,14 @@
     $newpwd_plain = $_POST['newpwd'];
 
     if (empty($pwd)) {
-        $stm = $mysqli->prepare("UPDATE customer SET fullname = ?, birthday = ? WHERE email = ?");
+        $stm = $mysqli->prepare("UPDATE user SET fullname = ?, birthday = ? WHERE email = ?");
         $stm->bind_param("sss", $fullname, $birthday, $email);
         $stm->execute();
         echo "<script> alert('Thay đổi thông tin thành công.'); window.location.href = '../pages/show_information.php'; </script>";
         $stm->close();
         exit;
     } else {
-        $check = $mysqli->prepare('SELECT pwd FROM customer WHERE email = ?');
+        $check = $mysqli->prepare('SELECT pwd FROM user WHERE email = ?');
         $check->bind_param('s', $email);
         $check->execute();
         $res = $check->get_result();
@@ -33,7 +33,7 @@
         }
 
         $newpwd = password_hash($newpwd_plain, PASSWORD_DEFAULT);
-        $stm = $mysqli->prepare("UPDATE customer SET fullname = ?, birthday = ?, pwd = ? WHERE email = ?");
+        $stm = $mysqli->prepare("UPDATE user SET fullname = ?, birthday = ?, pwd = ? WHERE email = ?");
         $stm->bind_param("ssss", $fullname, $birthday, $newpwd, $email);
         $stm->execute();
         echo "<script> alert('Thay đổi thông tin thành công.');window.location.href = '../pages/show_information.php'; </script>";

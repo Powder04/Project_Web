@@ -21,7 +21,9 @@ function fetchProducts(page = 1) {
                     <td>${product.quantity}</td>
                     <td>${product.sold_count}</td>
                     <td>
-                        <button onclick="editProduct('${product.product_id}', ${product.quantity}, ${product.price})" class="update"><i class="fa-solid fa-pen"></i></button>
+                        <button onclick="editProduct('${product.product_id}')" class="update">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
                         <button onclick="deleteProduct('${product.product_id}')" class="delete"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>`;});
@@ -73,20 +75,19 @@ function fetchProducts(page = 1) {
     xhttp.send(postData);
 }
 
-function editProduct(productID, currentQuantity, currentPrice) {
-    var newQuantity = prompt("Nhập số lượng mới:", currentQuantity);
-    var newPrice = prompt("Nhập giá mới:", currentPrice);
+function editProduct(product_id) {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '../admin/form_product.php';
 
-    if ((newQuantity !== null && !isNaN(newQuantity)) && (newPrice !== null && !isNaN(newPrice))) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "../admin/update_product.php", true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.onload = function () {
-            alert(this.responseText);
-            fetchProducts();
-        };
-        xhttp.send(`productID=${productID}&quantity=${newQuantity}&price=${newPrice}`);
-    }
+    const inputId = document.createElement('input');
+    inputId.type = 'hidden';
+    inputId.name = 'product_id';
+    inputId.value = product_id;
+    form.appendChild(inputId);
+
+    document.body.appendChild(form);
+    form.submit();
 }
 
 function deleteProduct(productID) {

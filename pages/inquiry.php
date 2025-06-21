@@ -39,7 +39,7 @@
                     <i class="fa-solid fa-cart-shopping"></i>
                     <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
                 </a>
-                <a href="../account/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 20px;">Đăng xuất</a>
+                <a href="../includes/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 20px;">Đăng xuất</a>
             </nav>
         </article>
     </header>

@@ -5,24 +5,21 @@
     $limit = 5;
     $offset = ($page - 1) * $limit;
 
-    $email = "adminkyu03@gmail.com";
-    $stm = $mysqli->prepare("SELECT COUNT(*) FROM customer WHERE email <> ?");
-    $stm->bind_param("s", $email);
-    $stm->execute();
-    $row = $stm->get_result()->fetch_row()[0];
+    $result = $mysqli->query("SELECT COUNT(*) FROM user");
+    $row = $result->fetch_row()[0];
     $totalPages = ceil($row / $limit);
-    $stm->close();
+    $result->free_result();
 
-    $stm = $mysqli->prepare("SELECT email, fullname, birthday, total_bill FROM customer WHERE email <> ?");
-    $stm->bind_param("s", $email);
+    $stm = $mysqli->prepare("SELECT * FROM user LIMIT ? OFFSET ?");
+    $stm->bind_param("ii", $limit, $offset);
     $stm->execute();
-    $rs = $stm->get_result();
+
+    $result = $stm->get_result();
 
     $data = [];
-    while($row = $rs->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
-
     $stm->close();
     $mysqli->close();
 

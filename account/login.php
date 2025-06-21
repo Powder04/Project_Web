@@ -5,7 +5,7 @@
     $email = $_POST['email'];
     $pwd = $_POST['pwd'];
 
-    $stm = $mysqli->prepare('SELECT * FROM customer WHERE email = ?');
+    $stm = $mysqli->prepare('SELECT * FROM user WHERE email = ?');
     $stm->bind_param('s', $email);
     $stm->execute();
     $rs = $stm->get_result();

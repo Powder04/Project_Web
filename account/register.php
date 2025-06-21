@@ -42,7 +42,7 @@
     }
 
     //Kiểm tra email đã tồn tại trong database chưa
-    $checkEmail = $mysqli->prepare('SELECT * FROM customer WHERE email = ?');
+    $checkEmail = $mysqli->prepare('SELECT * FROM user WHERE email = ?');
     $checkEmail->bind_param('s', $email);
     $checkEmail->execute();
     $rs_checkemail = $checkEmail->get_result();
@@ -57,7 +57,7 @@
 
     //Mã hoá mật khẩu + lưu vào database
     $encrypt_pwd = password_hash($pwd, PASSWORD_DEFAULT); 
-    $stm = $mysqli->prepare('INSERT INTO customer(email, fullname, birthday, pwd, created_at) VALUES(?, ?, ?, ?, ?)');
+    $stm = $mysqli->prepare('INSERT INTO user(email, fullname, birthday, pwd, created_at) VALUES(?, ?, ?, ?, ?)');
     $stm->bind_param("ssiss", $email, $fullname, $birthday, $encrypt_pwd, $time_register);
     $stm->execute();
     $stm->close();
