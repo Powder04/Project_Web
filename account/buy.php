@@ -1,5 +1,4 @@
 <?php
-// chỉnh pttt
     session_start();
     require_once('../includes/mysqlConnect.php');
 

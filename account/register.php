@@ -1,5 +1,4 @@
 <?php
-//thêm time đăng ký
     require_once('../includes/mysqlConnect.php');
 
     //Lấy dữ liệu từ form
