@@ -83,9 +83,13 @@
                     <h1 class="heading"><?php echo $is_edit ? 'Chỉnh sửa người dùng' : 'Thêm người dùng mới'; ?></h1>
                     <form action="<?php echo $is_edit ? './update_user.php' : './add_user.php'; ?>" method="post" enctype="application/x-www-form-urlencoded" id="formUser">
 
+                        <?php if ($is_edit): ?>
+                            <input type="hidden" class="inpt" name="oldEmail" value="<?php echo htmlspecialchars($email); ?>"/>
+                        <?php endif; ?>
+
                         <article class="account">
-                            <label class="lab" for="email">Địa chỉ email: </label>
-                            <input type="email" class="inpt" name="email" value="<?php echo htmlspecialchars($email); ?>" <?php echo $is_edit ? 'readonly' : ''; ?> required />
+                            <label class="lab" for="newEmail">Địa chỉ email: </label>
+                            <input type="email" class="inpt" name="newEmail" value="<?php echo htmlspecialchars($email); ?>" required />
                         </article>
                         
                         <article class="account">
@@ -100,7 +104,10 @@
 
                         <article class="account">
                             <label class="lab" for="pwd"><?php echo $is_edit ? 'Mật khẩu mới:' : 'Mật khẩu:'; ?> </label>
-                            <input type="password" name="pwd" class="inpt" placeholder="<?php echo $is_edit ? 'Để trống nếu không đổi' : ''; ?>" <?php echo $is_edit ? '' : 'required'; ?>/>
+                            <input type="password" name="pwd" id="password" class="inpt" placeholder="<?php echo $is_edit ? 'Để trống nếu không đổi' : ''; ?>" <?php echo $is_edit ? '' : 'required'; ?>/>
+                            <span class="toggle-icon" id="toggleIcon" onclick="togglePassword()">
+                                <i class="fa-solid fa-eye-slash"></i>
+                            </span>
                         </article>
 
                         <article class="account btn-account">
@@ -112,6 +119,20 @@
             </div>
         </div>
     </div>
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("password");
+            var icon = document.getElementById("toggleIcon");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            } else {
+                passwordInput.type = "password";
+                icon.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+            }
+        }
+    </script>
 </body>
 
 </html>

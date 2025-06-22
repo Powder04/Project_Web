@@ -4,7 +4,7 @@ function fetchProducts(page = 1) {
     var priceProduct = document.getElementById("price").value;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "../admin/get_products.php", true);
+    xhttp.open("POST", "../admin/get_product.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.onload = function () {
         var res = JSON.parse(this.responseText);
@@ -76,11 +76,11 @@ function fetchProducts(page = 1) {
 }
 
 function editProduct(product_id) {
-    const form = document.createElement('form');
+    var form = document.createElement('form');
     form.method = 'POST';
     form.action = '../admin/form_product.php';
 
-    const inputId = document.createElement('input');
+    var inputId = document.createElement('input');
     inputId.type = 'hidden';
     inputId.name = 'product_id';
     inputId.value = product_id;

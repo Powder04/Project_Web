@@ -60,7 +60,7 @@ async function loadCart() {
             totalBill += parseInt(item.total_price);
 
             return `
-                <div class="cart-item">
+                <div class="cart-item items">
                     <p>${index + 1}</p>
                     <p><img style="width: 60px;" src="${item.image}"/></p>
                     <p>${item.name}</p>

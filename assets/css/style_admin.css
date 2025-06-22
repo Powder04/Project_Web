@@ -244,7 +244,7 @@ tr:hover {
 
 .pagination button,
 #product button,
-#back button {
+#back button, #child1 button {
   background-color: #66cc66;
   color: white;
   border: none;
@@ -333,24 +333,79 @@ fieldset {
   margin-top: 50px;
 }
 
-.update,
-.delete,
-.update i,
-.delete i {
+.update, .delete, .update i, .delete i, .update_user i, .delete_user i, .update_user, .delete_user, .history, .history i {
   border: none;
   background-color: transparent;
 }
 
-.update i,
-.delete i {
-  margin: 0px 10px;
-  font-size: 20px;
+.update_user i, .delete_user i, .history i {
+  margin: 0px 3px;
 }
 
-.update i:hover {
+.update i, .delete i {
+  font-size: 20px;
+  margin: 0px 10px;
+}
+
+.update i:hover, .update_user i:hover {
   color: #00a00d;
 }
 
-.delete i:hover {
+.history i:hover {
+  color: goldenrod;
+}
+
+.delete i:hover, .delete_user i:hover {
   color: red;
+}
+
+.toggle-icon {
+  transform: translateX(-140%);
+  margin-top: 7px;
+}
+
+.btn-product {
+  padding: 10px 15px;
+  border: 1px solid rgb(40, 167, 69);
+  color: rgb(40, 167, 69);
+  background-color: white;
+  border-radius: 8px;
+}
+
+.btn-product:hover {
+  background-color: rgb(40, 167, 69);
+  color: white;
+}
+
+#child1 {
+  text-align: left;
+  width: 50%;
+}
+
+#child1 p {
+  margin: 10px 0px;
+}
+
+#child1 input, #child1 select {
+  padding: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#child2 h3 {
+  margin: 20px 0px;
+  float: right;
+}
+
+#child2 table {
+  box-shadow: none;
+}
+
+#order_detail table tr:hover {
+  background-color: unset;
+}
+
+#child2 th {
+  background-color: transparent;
+  color: #000;
 }

@@ -24,7 +24,10 @@
                 }
                 exit();
             }
-            else echo "<script>alert('Tài khoản đã bị khóa.'); window.history.back(); </script>";
+            else {
+                echo "<script>alert('Tài khoản đã bị khóa.'); window.history.back(); </script>";
+                exit();
+            }
         }
     }
     

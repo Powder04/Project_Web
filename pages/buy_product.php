@@ -30,15 +30,18 @@
         form .inf {
             display: block;
             margin-bottom: 5px;
+            height: calc(100vh - 70px);
+            width: 100%;
+            padding: 40px 30px 30px 30px;
         }
         .main-product {
             margin: 0;
             padding: 0;
             display: flex;
             height: 100vh;
+            overflow-y: scroll;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
         }
         #pay, #pay button {
             margin-top: 20px;
@@ -55,6 +58,12 @@
             padding: 5px;
             width: 55%;
         }
+        .items p:nth-child(1) { width: 30px; text-align: center; }
+        .items p:nth-child(2) { width: 60px; text-align: center; }
+        .items p:nth-child(3) { flex: 2; }
+        .items input { width: 60px; text-align: center; } 
+        .items p:nth-child(5) { width: 100px; text-align: center; }
+        .items button { width: 60px; }
     </style>
 </head>
 <body>
@@ -74,9 +83,9 @@
             </nav>
         </article>
     </header>
-    <main style="margin: 0px 5px;" class="main-product">
-        <form action="../account/buy.php" method="post" style="display: flex; width: 1300px; background-color: white;">
-            <div class="hero-container inf" style="flex: 1; padding: 20px;">
+    <main style="margin: 0px 5px;">
+        <form action="../account/buy.php" method="post" style="display: flex; background-color: white;" class="main-product">
+            <div class="inf" style="flex: 1; padding: 20px;">
                 <h1 style="text-align: center;">Thông tin đặt hàng</h1>
                 <div class="account" style="margin-top: 30px;">
                     <label class="lab" for="email">Địa chỉ email: </label>
@@ -129,7 +138,7 @@
                     <img src="../assets/images/momoQR.jpg" width="300px" style="margin-left: 218px; margin-top: -15px;">
                 </div>
             </div>
-            <div class="hero-container inf" style="flex: 1; padding: 20px; border-left: 1px solid #000;">
+            <div class="inf" style="flex: 1; padding: 20px; border-left: 1px solid #000;">
                 <h1 style="text-align: center;">Thông tin sản phẩm</h1>
                 <div id="cart" style="margin-top: 30px;"></div>
             </div>

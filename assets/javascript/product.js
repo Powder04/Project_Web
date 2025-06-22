@@ -25,7 +25,7 @@ function fetchProduct(page = 1) {
                     </div>
                     <div class="quantity">
                         <label>Số lượng: </label>
-                        <input type="number" min="0" max="${product.quantity}" value="0">
+                        <input type="number" min="0" max="99" value="1">
                     </div>
                     <div class="btn-product">
                         <button onclick="addToCart('${product.product_id}', this)">Thêm vào giỏ hàng</button>
@@ -99,18 +99,8 @@ async function addToCart(product_id, button) {
     var quantity = parseInt(productElement.querySelector('input[type="number"]').value);
     var total_price = price * quantity;
 
-    if (isNaN(quantity) || quantity === 0) {
-        alert("Vui lòng nhập số lượng hợp lệ!");
-        return;
-    }
-
-    if (quantity > 50) {
-        alert("Số lượng mua quá lớn. Vui lòng nhập lại số lượng.");
-        return;
-    }
-
     if (quantity > stock) {
-        alert(`Chỉ còn ${stock} sản phẩm trong kho. Vui lòng nhập lại số lượng.`);
+        alert(`Vượt quá số lượng sản phẩm trong kho. Vui lòng nhập lại số lượng.`);
         return;
     }
 

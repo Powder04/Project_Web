@@ -22,8 +22,8 @@
         }
     }
 
-    $stm = $mysqli->prepare("INSERT INTO orders(email, phone, order_date, total_price, total_quantity, address, payment_method) VALUES(?, ?, ?, ?, ?, ?, ?)");
-    $stm->bind_param("sssiiss", $email, $tel_customer, $time_order, $total_price, $total_quantity, $address, $payment_method);
+    $stm = $mysqli->prepare("INSERT INTO orders(email, name_customer, phone, order_date, total_price, total_quantity, address, payment_method) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+    $stm->bind_param("ssssiiss", $email, $name_customer, $tel_customer, $time_order, $total_price, $total_quantity, $address, $payment_method);
     $stm->execute();
     $order_id = $mysqli->insert_id;
     $stm->close();
@@ -55,7 +55,7 @@
     }
 
     //Update customer
-    $stm = $mysqli->prepare("SELECT total_bill FROM customer WHERE email = ?");
+    $stm = $mysqli->prepare("SELECT total_bill FROM user WHERE email = ?");
     $stm->bind_param("s", $email);
     $stm->execute();
     $stm->bind_result($old_bill);
@@ -63,7 +63,7 @@
     $stm->close();
     $new_bill = $old_bill + 1;
 
-    $update_customer = $mysqli->prepare("UPDATE customer SET total_bill = ? WHERE email = ?");
+    $update_customer = $mysqli->prepare("UPDATE user SET total_bill = ? WHERE email = ?");
     $update_customer->bind_param("is", $new_bill, $email);
     $update_customer->execute();
     $update_customer->close();

@@ -1,8 +1,9 @@
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL,
+    UNIQUE KEY email_unique (email),
     fullname VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-    birthday int,
+    birthday INT,
     pwd VARCHAR(255) NOT NULL,
     total_bill INT DEFAULT 0,
     status TINYINT DEFAULT 1,
@@ -13,6 +14,7 @@ CREATE TABLE user (
 CREATE TABLE orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL,
+    name_customer VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
     phone VARCHAR(20) NOT NULL,
     order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     total_price DECIMAL(15,0) DEFAULT 0,
@@ -29,7 +31,6 @@ CREATE TABLE orders (
         'Hủy đơn'
     ) NOT NULL DEFAULT 'Đang xử lý',
     FOREIGN KEY (email) REFERENCES user(email)
-        ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -39,9 +40,9 @@ CREATE TABLE order_detail (
     product_id VARCHAR(100) NOT NULL,
     product_name VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,
     quantity INT NOT NULL,
-    total_price DECIMAL(15,0),
+    total_price DECIMAL(15,0) DEFAULT 0,
     CONSTRAINT fk_order FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE product (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,6 +73,5 @@ CREATE TABLE feedback (
     submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     status ENUM('Đang xử lý', 'Đã xử lý') DEFAULT 'Đang xử lý',
     FOREIGN KEY (email) REFERENCES user(email)
-        ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

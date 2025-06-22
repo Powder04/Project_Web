@@ -51,22 +51,57 @@
             </nav>
         </div>
         <div class="main">
-            <div class="box-container">
+            <div id="list_order" style="display: block;">
+                <div class="box-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Email</th>
+                                <th>Họ và tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Ngày đặt đơn</th>
+                                <th>Thành tiền</th>
+                                <th>Trạng thái đơn</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billTable"></tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination"></div>
+            </div>
+            <div id="order_detail" style="display: none;">
+                <div id="product">
+                    <button type="button" style="padding: 8px 20px;" onclick="backToList()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
                 <table>
                     <thead>
                         <tr>
-                            <th>STT</th>
-                            <th>Email khách hàng</th>
-                            <th>Thông tin sản phẩm</th>
-                            <th>Ngày đặt đơn</th>
-                            <th>Tổng tiền</th>
-                            <th>Địa chỉ</th>
+                            <th><h2>Thông tin đặt hàng</h2></th>
+                            <th><h2>Thông tin sản phẩm</h2></th>
                         </tr>
                     </thead>
-                    <tbody id="productTable"></tbody>
+                    <tbody id="detailTable">
+                        <td id="child1"></td>
+                        <td id="child2">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Số lượng</th>
+                                        <th>Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bill"></tbody>
+                            </table>
+                            <div id="total"></div>
+                        </td>
+                    </tbody>
                 </table>
             </div>
-            <div class="pagination" id="pagination"></div>
             <script src="../assets/javascript/manage_bill.js"></script>
         </div>
     </div>

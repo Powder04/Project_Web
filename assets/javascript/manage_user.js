@@ -14,8 +14,8 @@ function fetchUser(page = 1) {
                     <td>${user.email}</td>
                     <td>${user.birthday}</td>
                     <td>
-                        <input onclick="updateUser('${user.email}', 'status', 1)" type="radio" name="status" value="1" ${user.status == 1 ? 'checked' : ''}> Active
-                        <input onclick="updateUser('${user.email}', 'status', 0)" type="radio" name="status" value="0" ${user.status == 0 ? 'checked' : ''}> Blocked
+                        <input onclick="updateUser('${user.email}', 'status', 1)" type="radio" name="status_${user.email}" value="1" ${user.status == 1 ? 'checked' : ''}> Active
+                        <input onclick="updateUser('${user.email}', 'status', 0)" type="radio" name="status_${user.email}" value="0" ${user.status == 0 ? 'checked' : ''}> Blocked
                     </td>
                     <td>
                         <select onchange="updateUser('${user.email}', 'role', this.value)" name="role">
@@ -26,8 +26,9 @@ function fetchUser(page = 1) {
                     <td>${new Date(user.created_at).toLocaleDateString('vi-VN')}</td>
                     <td>${user.total_bill}</td>
                     <td>
-                        <button onclick="editUser('${user.email}')" class="update"><i class="fa-solid fa-pen"></i></button>
-                        <button onclick="deleteUser('${user.email}')" class="delete"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="editUser('${user.email}')" class="update_user"><i class="fa-solid fa-pen"></i></button>
+                        <a href="../admin/manage_bill.html?email=${user.email}" class="history"><i class="fa-solid fa-list"></i></a>
+                        <button onclick="deleteUser('${user.email}')" class="delete_user"><i class="fa-solid fa-trash"></i></button>
                     </td>
                 </tr>`;
         });
@@ -79,25 +80,23 @@ function updateUser(email, field, value) {
     xhttp.send(`email=${encodeURIComponent(email)}&field=${field}&value=${encodeURIComponent(value)}`);
 }
 
-// function editUser(email) {
-//     var newEmail = prompt("Nhập email mới:", email);
-//     var newFullname = prompt("Nhập họ và tên mới:", fullname);
-//     var newBirthday = prompt("Nhập năm sinh mới:", birthday);
+function editUser(email) {
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '../admin/form_user.php';
 
-//     if (newEmail && newFullname && newBirthday) {
-//         var xhttp = new XMLHttpRequest();
-//         xhttp.open("POST", "../admin/update_user.php", true);
-//         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//         xhttp.onload = function() {
-//             alert(this.responseText);
-//             fetchUser();
-//         };
-//         xhttp.send(`old_email=${encodeURIComponent(email)}&email=${encodeURIComponent(newEmail)}&fullname=${encodeURIComponent(newFullname)}&birthday=${encodeURIComponent(newBirthday)}`);
-//     }
-// }
+    var inputId = document.createElement('input');
+    inputId.type = 'hidden';
+    inputId.name = 'email';
+    inputId.value = email;
+    form.appendChild(inputId);
+
+    document.body.appendChild(form);
+    form.submit();
+}
 
 function deleteUser(email) {
-    if (confirm("Bạn có chắc chắn muốn xóa khách hàng này?")) {
+    if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST", "../admin/delete_user.php", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

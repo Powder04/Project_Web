@@ -52,7 +52,6 @@
         $checkEmail->close();
         exit;
     }
-
     $checkEmail->close();
 
     //Mã hoá mật khẩu + lưu vào database

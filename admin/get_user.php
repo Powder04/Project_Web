@@ -10,7 +10,7 @@
     $totalPages = ceil($row / $limit);
     $result->free_result();
 
-    $stm = $mysqli->prepare("SELECT * FROM user LIMIT ? OFFSET ?");
+    $stm = $mysqli->prepare("SELECT * FROM user ORDER BY created_at DESC LIMIT ? OFFSET ?");
     $stm->bind_param("ii", $limit, $offset);
     $stm->execute();
 
