@@ -36,7 +36,7 @@
         $rs->close();
 
         $total_pages = ceil($total / $limit);
-
+        
         $sql = "SELECT p.product_id, p.name, p.price, p.quantity, p.sold_count, i.mime_type, TO_BASE64(i.image_data) 
                 AS image_data FROM product p
                 LEFT JOIN images i ON p.product_id = i.product_id

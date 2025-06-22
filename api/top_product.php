@@ -1,7 +1,10 @@
 <?php
     require_once("../includes/mysqlConnect.php");
 
-    $stm = $mysqli->query("SELECT * FROM product ORDER BY sold_count DESC LIMIT 12");
+    $stm = $mysqli->query("SELECT p.product_id, p.name, p.price, i.mime_type, TO_BASE64(i.image_data) 
+                            AS image_data FROM product p
+                            LEFT JOIN images i ON p.product_id = i.product_id
+                            ORDER BY p.sold_count LIMIT 12");
     $data = [];
     while($row = $stm->fetch_assoc()) {
         $data[] = $row;
