@@ -18,7 +18,7 @@ function fetchUser(page = 1) {
                         <input onclick="updateUser('${user.email}', 'status', 0)" type="radio" name="status_${user.email}" value="0" ${user.status == 0 ? 'checked' : ''}> Blocked
                     </td>
                     <td>
-                        <select onchange="updateUser('${user.email}', 'role', this.value)" name="role">
+                        <select onchange="updateUser('${user.email}', 'role', this.value)" name="role" style="padding: 3px 10px;">
                             <option value="user" ${user.role === 'user' ? 'selected' : ''}>User</option>
                             <option value="admin" ${user.role === 'admin' ? 'selected' : ''}>Admin</option>
                         </select>
