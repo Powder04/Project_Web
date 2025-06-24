@@ -14,7 +14,7 @@
     $checkEmail->execute();
     $rs_checkemail = $checkEmail->get_result();
 
-    if ($rs_checkemail->num_rows > 0) {
+    if($rs_checkemail->num_rows > 0) {
         echo "<script> alert('Email đã tồn tại. Vui lòng chọn email khác.'); window.history.back(); </script>";
         $checkEmail->close();
         exit;

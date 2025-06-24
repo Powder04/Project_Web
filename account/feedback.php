@@ -1,6 +1,7 @@
 <?php
     require_once("../includes/mysqlConnect.php");
 
+    session_start();
     date_default_timezone_set("Asian/Ho_Chi_Minh");
     $time = date("Y/m/d H:m:s");
     $email = $_SESSION["email"];

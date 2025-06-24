@@ -22,7 +22,7 @@
         <div class="navcontainer">
             <nav class="nav">
                 <div class="nav-upper-options">
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <div class="nav-option">
                             <h3>Danh mục</h3>
                         </div>
@@ -52,6 +52,12 @@
         </div>
         <div class="main">
             <div id="product">
+                <label for="role">Phân quyền: </label>
+                <select name="role" id="role" onchange="fetchUser(1)">
+                    <option value="Tất cả" selected>Tất cả</option>
+                    <option value="Admin">Admin</option>
+                    <option value="User">User</option>
+                </select>
                 <button type="button" style="padding: 8px 20px;" onclick="window.location.href='./form_user.php';">+</button>
             </div>
             <div class="box-container">

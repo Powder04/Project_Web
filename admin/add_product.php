@@ -7,11 +7,11 @@
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
 
-    if (!isset($_FILES['image_file'])) {
+    if(!isset($_FILES['image_file'])) {
         die("No file uploaded.");
     }
 
-    if ($_FILES['image_file']['error'] !== UPLOAD_ERR_OK) {
+    if($_FILES['image_file']['error'] !== UPLOAD_ERR_OK) {
         die("Upload error: " . $_FILES['image_file']['error']);
     }
 
@@ -21,17 +21,17 @@
     $image_data = file_get_contents($_FILES['image_file']['tmp_name']);
 
     $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
-    if (!in_array($mime_type, $allowed_types)) {
+    if(!in_array($mime_type, $allowed_types)) {
         die("Invalid file type. Only JPG, PNG, and GIF are allowed.");
     }
 
-    if ($file_size > 2 * 1024 * 1024) {
+    if($file_size > 2 * 1024 * 1024) {
         die("File size too large. Max allowed size is 2MB.");
     }
 
     $stm = $mysqli->prepare("INSERT INTO product (product_id, name, category, price, quantity) VALUES (?, ?, ?, ?, ?)");
     $stm->bind_param("sssii", $productID, $nameProduct, $typeProduct, $price, $quantity);
-    if (!$stm->execute()) {
+    if(!$stm->execute()) {
         die("Failed to insert product: " . $stm->error);
     }
     $stm->close();
@@ -40,7 +40,7 @@
     $stm->bind_param("sssis", $productID, $filename, $mime_type, $file_size, $image_data);
     $stm->send_long_data(4, $image_data);
 
-    if (!$stm->execute()) {
+    if(!$stm->execute()) {
         die("Failed to insert image: " . $stm->error);
     }
     $stm->close();

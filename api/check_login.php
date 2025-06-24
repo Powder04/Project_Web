@@ -3,7 +3,7 @@
 
     $response = ['login' => false];
 
-    if (isset($_SESSION['email'])) {
+    if(isset($_SESSION['email'])) {
         $response['login'] = true;
         $response['email'] = $_SESSION['email'];
     }

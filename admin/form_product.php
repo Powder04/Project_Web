@@ -6,7 +6,7 @@
     $mime_type = '';
     $is_edit = false;
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         $product_id = $_POST['product_id'];
 
         $stm = $mysqli->prepare("SELECT p.name, p.category, p.price, p.quantity, i.image_data, i.mime_type FROM product p
@@ -14,7 +14,7 @@
         $stm->bind_param("s", $product_id);
         $stm->execute();
         $stm->bind_result($name, $type, $price, $quantity, $image_data, $mime_type);
-        if ($stm->fetch()) {
+        if($stm->fetch()) {
             $is_edit = true;
         }
         $stm->close();
@@ -86,7 +86,7 @@
                     <h1 class="heading"><?php echo $is_edit ? 'Chỉnh sửa sản phẩm' : 'Thêm sản phẩm mới'; ?></h1>
                     <form action="<?php echo $is_edit ? './update_product.php' : './add_product.php'; ?>" method="post" enctype="multipart/form-data" id="formProduct">
 
-                        <?php if ($is_edit): ?>
+                        <?php if($is_edit): ?>
                             <article class="account">
                                 <label class="lab" for="product_id">Mã sản phẩm: </label>
                                 <input type="text" class="inpt" name="product_id" value="<?php echo htmlspecialchars($product_id); ?>" required />
@@ -98,7 +98,7 @@
                             <input type="text" class="inpt" name="nameProduct" value="<?php echo htmlspecialchars($name); ?>" required />
                         </article>
 
-                        <?php if (!$is_edit): ?>
+                        <?php if(!$is_edit): ?>
                             <article class="account">
                                 <label class="lab" for="productID">Mã sản phẩm: </label>
                                 <input type="text" class="inpt" name="productID" required />
@@ -107,7 +107,7 @@
 
                         <article class="account">
                             <label class="lab" for="image_file">Hình ảnh sản phẩm:</label><br>
-                            <?php if ($is_edit && $image_data): ?>
+                            <?php if($is_edit && $image_data): ?>
                                 <img src="data:<?php echo $mime_type; ?>;base64,<?php echo base64_encode($image_data); ?>" width="120px"><br>
                             <?php endif; ?>
                             <input type="file" name="image_file" accept="image/png, image/jpg, image/jpeg, image/gif"
@@ -117,19 +117,19 @@
                         <article class="account">
                             <label class="lab" for="typeProduct">Loại sản phẩm:</label>
                             <select name="typeProduct" style="padding: 3px">
-                                <option value="Khác" <?php if ($type == 'Khác')
+                                <option value="Khác" <?php if($type == 'Khác')
                                     echo 'selected'; ?>>O-Khác</option>
-                                <option value="Balo" <?php if ($type == 'Balo')
+                                <option value="Balo" <?php if($type == 'Balo')
                                     echo 'selected'; ?>>BP-Balo</option>
-                                <option value="Móc khóa" <?php if ($type == 'Móc khóa')
+                                <option value="Móc khóa" <?php if($type == 'Móc khóa')
                                     echo 'selected'; ?>>KC-Móc khóa
                                 </option>
-                                <option value="Phụ kiện tóc" <?php if ($type == 'Phụ kiện tóc')
+                                <option value="Phụ kiện tóc" <?php if($type == 'Phụ kiện tóc')
                                     echo 'selected'; ?>>HA-Phụ kiện tóc
                                 </option>
-                                <option value="Túi" <?php if ($type == 'Túi')
+                                <option value="Túi" <?php if($type == 'Túi')
                                     echo 'selected'; ?>>B-Túi</option>
-                                <option value="Combo" <?php if ($type == 'Combo')
+                                <option value="Combo" <?php if($type == 'Combo')
                                     echo 'selected'; ?>>CB-Combo</option>
                             </select>
                         </article>

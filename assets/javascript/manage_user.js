@@ -1,5 +1,6 @@
 function fetchUser(page = 1) {
     var xhttp = new XMLHttpRequest();
+    var role = document.getElementById("role").value;
     xhttp.open("POST", "../admin/get_user.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.onload = function () {
@@ -67,7 +68,9 @@ function fetchUser(page = 1) {
             pag.innerHTML += `<button onclick="fetchUser(${res.page + 1})"><i class="fa-solid fa-arrow-right"></i></button>`;
         }
     };
-    xhttp.send(`page=${page}`);
+    var param = `page=${page}`;
+    if(role && role !== "Tất cả") param += `&role=${encodeURIComponent(role)}`
+    xhttp.send(param);
 }
 
 function updateUser(email, field, value) {

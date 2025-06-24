@@ -8,7 +8,7 @@
     $pwd = $_POST['pwd'];
     $newpwd_plain = $_POST['newpwd'];
 
-    if (empty($pwd)) {
+    if(empty($pwd)) {
         $stm = $mysqli->prepare("UPDATE user SET fullname = ?, birthday = ? WHERE email = ?");
         $stm->bind_param("sss", $fullname, $birthday, $email);
         $stm->execute();
@@ -22,12 +22,12 @@
         $res = $check->get_result();
         $old_pwd = $res->fetch_assoc();
 
-        if (!password_verify($pwd, $old_pwd['pwd'])) {
+        if(!password_verify($pwd, $old_pwd['pwd'])) {
             echo "<script> alert('Mật khẩu hiện tại không đúng.'); window.history.back(); </script>";
             exit;
         }
 
-        if (empty($newpwd_plain)) {
+        if(empty($newpwd_plain)) {
             echo "<script> alert('Vui lòng nhập mật khẩu mới.'); window.history.back(); </script>";
             exit;
         }

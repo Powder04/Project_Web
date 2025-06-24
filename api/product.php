@@ -6,14 +6,14 @@
     $offset = ($page - 1) * $limit;
 
     $orderBy = [];
-    if (!empty($_POST["sale"]) && $_POST["sale"] !== "Không") $orderBy[] = "p.sold_count " . $_POST["sale"];
-    if (!empty($_POST["price"]) && $_POST["price"] !== "Không") $orderBy[] = "p.price " . $_POST["price"];
+    if(!empty($_POST["sale"]) && $_POST["sale"] !== "Không") $orderBy[] = "p.sold_count " . $_POST["sale"];
+    if(!empty($_POST["price"]) && $_POST["price"] !== "Không") $orderBy[] = "p.price " . $_POST["price"];
 
-    if (empty($orderBy)) $orderBy[] = "p.product_id DESC";
+    if(empty($orderBy)) $orderBy[] = "p.product_id DESC";
     
     $orderBySql = " ORDER BY " . implode(", ", $orderBy);
 
-    if (empty($_POST["type"]) || $_POST["type"] === "Tất cả") {
+    if(empty($_POST["type"]) || $_POST["type"] === "Tất cả") {
         // Đếm tổng số
         $rs = $mysqli->query("SELECT COUNT(*) FROM product WHERE quantity > 0");
         $total = $rs->fetch_row()[0];

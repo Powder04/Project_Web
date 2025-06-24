@@ -22,7 +22,7 @@
         <div class="navcontainer">
             <nav class="nav">
                 <div class="nav-upper-options">
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <div class="nav-option">
                             <h3>Danh mục</h3>
                         </div>
@@ -52,6 +52,15 @@
         </div>
         <div class="main">
             <div id="list_order" style="display: block;">
+                <div id="product">
+                    <label for="status">Trạng thái đơn hàng: </label>
+                    <select name="status" id="status" onchange="fetchBill(1)">
+                        <option value="Tất cả" selected>Tất cả</option>
+                        <option value="Đang xử lý">Đang xử lý</option>
+                        <option value="Thành công">Thành công</option>
+                        <option value="Hủy đơn">Hủy đơn</option>
+                    </select>
+                </div>
                 <div class="box-container">
                     <table>
                         <thead>

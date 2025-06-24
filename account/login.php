@@ -20,7 +20,7 @@
                 if($customer['role'] !== 'admin') {
                     echo '<script> alert("Đăng nhập thành công."); window.location.href="../pages/index.php"; </script>';
                 } else {
-                    echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/index.html"; </script>';
+                    echo '<script> alert("Đăng nhập thành công. Chào admin!"); window.location.href="../admin/index.php"; </script>';
                 }
                 exit();
             }

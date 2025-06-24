@@ -26,9 +26,11 @@
     span {
       padding: 4.5px;
     }
+
     .lab {
       width: 45%;
     }
+
     header {
       height: 70px;
       width: 100vw;
@@ -56,7 +58,8 @@
         <a href="./get_information.php">Cập nhật thông tin</a>
         <a href="./show_product.php">Sản phẩm</a>
         <a href="./inquiry.php">Góp ý</a>
-        <a href="./buy_product.php" id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 15px;">
+        <a href="./buy_product.php" id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()"
+          style="margin-right: 15px;">
           <i class="fa-solid fa-cart-shopping"></i>
           <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
         </a>
@@ -68,7 +71,7 @@
   </header>
 
   <main class="container">
-    <fieldset>
+    <fieldset style="display: block;" id="information">
       <h1 class="heading">Thông tin khách hàng</h1>
       <article class="account">
         <label class="lab"><b>Họ và tên: </b></label>
@@ -82,7 +85,62 @@
         <label class="lab"><b>Năm sinh: </b></label>
         <span><?php echo $customer['birthday'] ?></span>
       </article>
+      <div id="product" style="text-align: center;">
+        <button type="button" style="padding: 8px 20px;" onclick="fetchHistory(1)">Lịch sử mua hàng</button>
+      </div>
     </fieldset>
+    <div id="list_order" style="display: none;">
+      <div id="product">
+        <button type="button" style="padding: 8px 20px;" onclick="backToList()">Quay lại</button>
+      </div>
+      <div class="box-container">
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Email</th>
+              <th>Họ và tên</th>
+              <th>Số điện thoại</th>
+              <th>Ngày đặt đơn</th>
+              <th>Thành tiền</th>
+              <th>Chi tiết</th>
+            </tr>
+          </thead>
+          <tbody id="historyTable"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="order_detail" style="display: none;">
+      <div id="product">
+        <button type="button" style="padding: 8px 20px;" onclick="backToHistory()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th><h2>Thông tin đặt hàng</h2></th>
+            <th><h2>Thông tin sản phẩm</h2></th>
+          </tr>
+        </thead>
+        <tbody id="detailTable">
+          <td id="child1"></td>
+          <td id="child2">
+            <table>
+              <thead>
+                <tr>
+                  <th>Mã sản phẩm</th>
+                  <th>Tên sản phẩm</th>
+                  <th>Hình ảnh</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền</th>
+                </tr>
+              </thead>
+              <tbody id="bill"></tbody>
+            </table>
+            <div id="total"></div>
+          </td>
+        </tbody>
+      </table>
+    </div>
   </main>
   <script src="../assets/javascript/product.js"></script>
 </body>

@@ -79,6 +79,92 @@ function fetchProduct(page = 1) {
     xhttp.send(postData);
 }
 
+function fetchHistory(page = 1) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../api/get_bill.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.onload = function () {
+        var res = JSON.parse(this.responseText);
+        var tbody = document.getElementById('historyTable');
+        document.getElementById("information").style.display = "none";
+        document.getElementById("list_order").style.display = "block";
+        document.getElementById("order_detail").style.display = "none";
+        tbody.innerHTML = '';
+        res.data.forEach((history, index) => {
+            tbody.innerHTML += `
+                <tr>
+                    <td>${(res.page - 1) * res.limit + index + 1}</td>
+                    <td>${history.email}</td>
+                    <td>${history.name_customer}</td>
+                    <td>${history.phone}</td>
+                    <td>${history.order_date}</td>
+                    <td>${parseInt(history.total_price).toLocaleString()} VNĐ</td>
+                    <td>
+                        <button class="btn1" onclick="detail(${history.id})">Xem chi tiết</button>
+                    </td>
+                </tr>`;
+        });
+    }
+    xhttp.send(`page=${page}`);
+}
+
+function detail(order_id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../api/get_detail.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.onload = function() {
+        document.getElementById("information").style.display = "none";
+        document.getElementById("list_order").style.display = "none";
+        document.getElementById("order_detail").style.display = "block";
+
+        var child1 = document.getElementById("child1");
+        var item = JSON.parse(this.responseText).data_order;
+        child1.innerHTML = `
+                <input name="order_id" type="hidden" value="${item.id}">
+                <p>Email:</p>
+                <input value="${item.email}" readonly>
+                <p>Họ và tên:</p>
+                <input value="${item.name_customer}" readonly>
+                <p>Số điện thoại:</p>
+                <input value="${item.phone}" readonly>
+                <p>Địa chỉ giao hàng:</p>
+                <input value="${item.address}" readonly>
+                <p>Phương thức thanh toán:</p>
+                <input value="${item.payment_method}" readonly>
+                <p>Tình trạng đơn hàng:</p>
+                <input value="${item.order_status}" readonly>`;
+
+        var bill = document.getElementById("bill");
+        var res = JSON.parse(this.responseText);
+        bill.innerHTML = '';
+        res.data_detail.forEach((item, index) => {
+            bill.innerHTML += `
+                <tr class="bill">
+                    <td>${item.product_id}</td>
+                    <td>${item.product_name}</td>
+                    <td><img src="data:${item.mime_type};base64,${item.image_data}" width="60px"/></td>
+                    <td>x${item.quantity}</td>
+                    <td>${parseInt(item.total_price).toLocaleString()}VNĐ</td>
+                </tr>`;
+        });
+        document.getElementById("total").innerHTML = '';
+        document.getElementById("total").innerHTML = `<h3>Tổng thanh toán: ${parseInt(item.total_price).toLocaleString()}VNĐ</h3>`;
+    } 
+    xhttp.send(`order_id=${order_id}`);
+}
+
+function backToList() {
+    document.getElementById("list_order").style.display = "none";
+    document.getElementById("information").style.display = "block";
+    document.getElementById("order_detail").style.display = "none";
+}
+
+function backToHistory() {
+    document.getElementById("information").style.display = "none";
+    document.getElementById("list_order").style.display = "block";
+    document.getElementById("order_detail").style.display = "none";
+}
+
 async function addToCart(product_id, button) { 
     // Kiểm tra đăng nhập
     var checkLogin = await fetch('../api/check_login.php');

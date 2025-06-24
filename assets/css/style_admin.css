@@ -409,3 +409,52 @@ fieldset {
   background-color: transparent;
   color: #000;
 }
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: #fff;
+  min-height: 150px;
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgb(25, 100, 40);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  font-size: 20px;
+}
+
+.card-content .title {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.card-content .value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #222;
+}
+
+.card-content .compare {
+  margin-top: 6px;
+  font-size: 12px;
+}

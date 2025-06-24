@@ -1,6 +1,7 @@
 function fetchBill(page = 1) {
     var xhttp = new XMLHttpRequest();
     var email = getQueryParam("email");
+    var status = document.getElementById("status").value;
     var params = `page=${page}`;
     if (email) params += `&email=${encodeURIComponent(email)}`;
     xhttp.open("POST", "../admin/get_bill.php", true);
@@ -59,6 +60,7 @@ function fetchBill(page = 1) {
             pag.innerHTML += `<button onclick="fetchBill(${res.page + 1})"><i class="fa-solid fa-arrow-right"></i></button>`;
         }
     };
+    if(status !== "Tất cả") params += `&status=${encodeURIComponent(status)}`;
     xhttp.send(params);
 }
 

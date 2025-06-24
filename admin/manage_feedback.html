@@ -22,7 +22,7 @@
         <div class="navcontainer">
             <nav class="nav">
                 <div class="nav-upper-options">
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <div class="nav-option">
                             <h3>Danh mục</h3>
                         </div>
@@ -51,9 +51,29 @@
             </nav>
         </div>
         <div class="main">
-            <div class="box-container">
-                
+            <div id="product">
+                <label for="status">Trạng thái: </label>
+                <select name="status" id="status" onchange="fetchFeedBack(1)">
+                    <option value="Tất cả" selected>Tất cả</option>
+                    <option value="Đang xử lý">Đang xử lý</option>
+                    <option value="Đã xử lý">Đã xử lý</option>
+                </select>
             </div>
+            <div class="box-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Email</th>
+                            <th>Thời gian</th>
+                            <th>Lời góp ý</th>
+                            <th>Trạng thái xử lý</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackTable"></tbody>
+                </table>
+            </div>
+            <div class="pagination" id="pagination"></div>
             <script src="../assets/javascript/manage_feedback.js"></script>
         </div>
     </div>

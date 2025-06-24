@@ -93,7 +93,7 @@
                 <br>
                 <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i> Instagram</a>
                 <br>
-                <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                <a href="https://www.youtube.com/@Kiiv_1112"><i class="fa-brands fa-youtube"></i> YouTube</a>
             </article>
         </article> 
         <article>

@@ -4,28 +4,22 @@
     $page = isset($_POST["page"]) ? (int)$_POST['page'] : 1;
     $limit = 5;
     $offset = ($page - 1) * $limit;
-    $email = isset($_POST["email"]) ? trim($_POST["email"]) : null;
     $status = isset($_POST["status"]) ? trim($_POST["status"]) : null;
 
     $where = [];
     $types = "";
     $params = [];
-    if($email) {
-        $where[] = "email = ?";
-        $types .= "s";
-        $params[] = $email;
-    }
     if($status && $status !== "Tất cả") {
-        $where[] = "order_status = ?";
+        $where[] = "status = ?";
         $types .= "s";
         $params[] = $status;
     }
     $whereSQL = "";
     if(!empty($where)) {
-        $whereSQL = "WHERE " . implode(" AND ", $where);
+        $whereSQL = "WHERE " . implode("", $where);
     }
 
-    $sql_count = "SELECT COUNT(*) FROM orders $whereSQL";
+    $sql_count = "SELECT COUNT(*) FROM feedback $whereSQL";
     $stm = $mysqli->prepare($sql_count);
     if(!empty($params)) {
         $stm->bind_param($types, ...$params);
@@ -35,7 +29,7 @@
     $totalPages = ceil($row / $limit);
     $stm->close();
 
-    $sql = "SELECT * FROM orders $whereSQL ORDER BY order_date DESC LIMIT ? OFFSET ?";
+    $sql = "SELECT * FROM feedback $whereSQL ORDER BY submitted_at DESC LIMIT ? OFFSET ?";
     $stm = $mysqli->prepare($sql);
 
     if(!empty($params)) {

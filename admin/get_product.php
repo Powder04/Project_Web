@@ -7,16 +7,12 @@
 
     // Xử lý ORDER BY
     $orderBy = [];
-    if (!empty($_POST["saleProduct"]) && $_POST["saleProduct"] !== "Không") $orderBy[] = "p.sold_count " . $_POST["saleProduct"];
-    if (!empty($_POST["priceProduct"]) && $_POST["priceProduct"] !== "Không") $orderBy[] = "p.price " . $_POST["priceProduct"];
-
-    // Nếu không chọn sort nào → mặc định
-    if (empty($orderBy)) $orderBy[] = "p.product_id DESC";
-    
+    if(!empty($_POST["saleProduct"]) && $_POST["saleProduct"] !== "Không") $orderBy[] = "p.sold_count " . $_POST["saleProduct"];
+    if(!empty($_POST["priceProduct"]) && $_POST["priceProduct"] !== "Không") $orderBy[] = "p.price " . $_POST["priceProduct"];
+    if(empty($orderBy)) $orderBy[] = "p.product_id DESC";
     $orderBySql = " ORDER BY " . implode(", ", $orderBy);
 
-    // Nếu typeProduct là Tất cả
-    if (empty($_POST["typeProduct"]) || $_POST["typeProduct"] === "Tất cả") {
+    if(empty($_POST["typeProduct"]) || $_POST["typeProduct"] === "Tất cả") {
         $resultCount = $mysqli->query("SELECT COUNT(*) FROM product");
         $total = $resultCount->fetch_row()[0];
         $totalPages = ceil($total / $limit);
@@ -29,9 +25,8 @@
         $stm = $mysqli->prepare($sql);
         $stm->bind_param("ii", $limit, $offset);
     }
-    // Nếu có chọn loại sản phẩm
     else {
-        $rs = $mysqli->prepare("SELECT COUNT(*) FROM product WHERE category = ? AND quantity > 0");
+        $rs = $mysqli->prepare("SELECT COUNT(*) FROM product WHERE category = ?");
         $rs->bind_param("s", $_POST["typeProduct"]);
         $rs->execute();
         $rs->bind_result($total);
@@ -48,7 +43,6 @@
         $stm = $mysqli->prepare($sql);
         $stm->bind_param("sii", $_POST["typeProduct"], $limit, $offset);
     }
-
     $stm->execute();
     $result = $stm->get_result();
 
@@ -56,7 +50,6 @@
     while ($row = $result->fetch_assoc()) {
         $data[] = $row;
     }
-
     $stm->close();
     $mysqli->close();
 

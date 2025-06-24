@@ -4,14 +4,14 @@
     $email = $fullname = $birthday = $pwd = '';
     $is_edit = false;
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+    if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
         $email = $_POST['email'];
 
         $stm = $mysqli->prepare("SELECT email, fullname, birthday, pwd FROM user WHERE email = ?");
         $stm->bind_param("s", $email);
         $stm->execute();
         $stm->bind_result($email, $fullname, $birthday, $pwd);
-        if ($stm->fetch()) {
+        if($stm->fetch()) {
             $is_edit = true;
         }
         $stm->close();
@@ -83,7 +83,7 @@
                     <h1 class="heading"><?php echo $is_edit ? 'Chỉnh sửa người dùng' : 'Thêm người dùng mới'; ?></h1>
                     <form action="<?php echo $is_edit ? './update_user.php' : './add_user.php'; ?>" method="post" enctype="application/x-www-form-urlencoded" id="formUser">
 
-                        <?php if ($is_edit): ?>
+                        <?php if($is_edit): ?>
                             <input type="hidden" class="inpt" name="oldEmail" value="<?php echo htmlspecialchars($email); ?>"/>
                         <?php endif; ?>
 
@@ -124,7 +124,7 @@
             var passwordInput = document.getElementById("password");
             var icon = document.getElementById("toggleIcon");
 
-            if (passwordInput.type === "password") {
+            if(passwordInput.type === "password") {
                 passwordInput.type = "text";
                 icon.innerHTML = '<i class="fa-solid fa-eye"></i>';
             } else {

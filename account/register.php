@@ -10,14 +10,14 @@
     $time_register = date("Y/m/d H:m:s");
 
     //Kiểm tra cú pháp email
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<script> alert('Email không hợp lệ.'); window.history.back(); </script>";
         exit;
     }
 
     //Kiểm tra domain email có MX record (mail server)
     list($user, $domain) = explode('@', $email);
-    if (!checkdnsrr($domain, 'MX')) {
+    if(!checkdnsrr($domain, 'MX')) {
         echo "<script> alert('Tên miền email không có máy chủ mail.'); window.history.back(); </script>";
         exit;
     }
@@ -36,7 +36,7 @@
     $data = json_decode($response, true);
 
     //Kiểm tra kết quả trả về
-    if ($data['format_valid'] != 1 || $data['smtp_check'] != 1) {
+    if($data['format_valid'] != 1 || $data['smtp_check'] != 1) {
         echo "<script> alert('Email không hợp lệ hoặc không tồn tại.'); window.history.back(); </script>";
         exit;
     }
@@ -47,7 +47,7 @@
     $checkEmail->execute();
     $rs_checkemail = $checkEmail->get_result();
 
-    if ($rs_checkemail->num_rows > 0) {
+    if($rs_checkemail->num_rows > 0) {
         echo "<script> alert('Email đã tồn tại. Vui lòng chọn email khác.'); window.history.back(); </script>";
         $checkEmail->close();
         exit;

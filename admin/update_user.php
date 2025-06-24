@@ -7,7 +7,7 @@
         $fullname = $_POST["fullname"];
         $birthday = $_POST["birthday"];
 
-        if ($oldEmail !== $newEmail) {
+        if($oldEmail !== $newEmail) {
             $check = $mysqli->prepare("SELECT email FROM user WHERE email = ?");
             $check->bind_param("s", $newEmail);
             $check->execute();
