@@ -1,4 +1,5 @@
 <?php
+// Cập nhật thông tin khách hàng đã chỉnh sửa
     session_start();
     require_once('../includes/mysqlConnect.php');
 

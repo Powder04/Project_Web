@@ -37,18 +37,18 @@
                 <a href="./index.php">Trang chủ</a>
                 <?php
                     session_start();
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '
+                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true && $_SESSION["role"] === "user") echo '
                     <a href="./show_information.php">Thông tin khách hàng</a>
                     <a href="./get_information.php">Cập nhật thông tin</a>
                     <a href="./inquiry.php">Góp ý</a>';
                 ?>  
-                <a <?php if(isset($_SESSION["login"]) && $_SESSION["login"] === true ) echo 'href="./buy_product.php"';
+                <a <?php if(isset($_SESSION["login"]) && $_SESSION["login"] === true && $_SESSION["role"] === "user") echo 'href="./buy_product.php"';
                          else echo 'href="./login.html"'; ?> id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()" style="margin-right: 15px;">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>
                 </a>
                 <?php
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '
+                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true && $_SESSION["role"] === "user") echo '
                     <a href="../includes/logout.php" style="background-color: rgb(40, 167, 69); border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: white; margin-right: 5px;">Đăng xuất</a>';
                     else echo '<a href="./login.html" style="background-color: white; border: 1px solid rgb(40, 167, 69); padding: 10px 20px; text-decoration: none; color: rgb(40, 167, 69); margin-right: 5px;">Đăng nhập</a>';
                 ?>

@@ -20,14 +20,14 @@
                 <a href="./index.php">Trang chủ</a>
                 <?php
                     session_start();
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '
+                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true && $_SESSION["role"] === "user") echo '
                     <a href="./show_information.php">Thông tin khách hàng</a>
                     <a href="./get_information.php">Cập nhật thông tin</a>
                     <a href="./inquiry.php">Góp ý</a>';
                 ?>
                 <a href="./show_product.php">Sản phẩm</a>
                 <?php
-                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true) echo '
+                    if(isset($_SESSION["login"]) && $_SESSION["login"] === true  && $_SESSION["role"] === "user") echo '
                     <a href="./buy_product.php" id="cart-icon" onmouseenter="showCartDropdown()" onmouseleave="hideCartDropdown()"
                         style="margin-right: 15px;"><i class="fa-solid fa-cart-shopping"></i>
                         <div id="cart-dropdown" onmouseenter="cancelHide()" onmouseleave="hideCartDropdown()"></div>

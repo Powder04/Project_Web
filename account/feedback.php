@@ -1,4 +1,5 @@
 <?php
+// Thêm feedback của khách hàng vào DB
     require_once("../includes/mysqlConnect.php");
 
     session_start();

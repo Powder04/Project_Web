@@ -1,4 +1,5 @@
 <?php
+// Đăng nhập
     session_start();
     require_once('../includes/mysqlConnect.php');
 
@@ -16,7 +17,8 @@
             if($customer["status"] === 1) {
                 $_SESSION['login'] = true;
                 $_SESSION['email'] = $customer['email'];
-
+                $_SESSION["role"] = $customer['role'];
+                
                 if($customer['role'] !== 'admin') {
                     echo '<script> alert("Đăng nhập thành công."); window.location.href="../pages/index.php"; </script>';
                 } else {

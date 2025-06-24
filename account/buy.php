@@ -1,4 +1,5 @@
 <?php
+// Tạo hóa đơn mua hàng
     session_start();
     require_once('../includes/mysqlConnect.php');
 

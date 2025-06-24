@@ -1,7 +1,7 @@
 <?php
     require_once('../includes/mysqlConnect.php');
     session_start();
-    if($_SESSION["login"] !== true && !isset($_SESSION["login"])) header("Location: ../pages/login.html");
+    if($_SESSION["login"] !== true && !isset($_SESSION["login"]) && $_SESSION["role"] !== "admin") header("Location: ../pages/login.html");
 
     // --- Thống kê ---
     $total_users = $mysqli->query("SELECT COUNT(*) FROM user")->fetch_row()[0];

@@ -1,4 +1,5 @@
 <?php
+// Đăng ký tài khoản
     require_once('../includes/mysqlConnect.php');
 
     //Lấy dữ liệu từ form
