@@ -19,8 +19,8 @@ cập nhật thông tin tài khoản, gửi góp ý
 - Phần Admin:
     + Xem thống kê
     + Quản lý sản phẩm: Thêm / sửa / xóa; lọc sản phẩm theo loại, giá, lượt bán
-    + Quản lý người dùng: Thêm / sửa / xóa / phân quyền / chỉnh sửa trạng thái, lọc theo phân quyền, xem danh sách 
-    đơn hàng của mỗi người dùng
+    + Quản lý tài khoản: Thêm / sửa / xóa / phân quyền / chỉnh sửa trạng thái, lọc theo phân quyền, xem danh sách 
+    đơn hàng của mỗi tài khoản khách hàng
     + Quản lý đơn hàng: Xem danh sách đơn hàng (có thể lọc theo trạng thái đơn), xem chi tiết của từng đơn hàng và
     cập nhật lại trạng thái đơn
     + Quản lý phản hồi: Xem danh sách các phản hồi mà khách hàng đã gửi (có thể lọc theo trạng thái), 
