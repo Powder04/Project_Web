@@ -166,16 +166,6 @@ function backToHistory() {
 }
 
 async function addToCart(product_id, button) { 
-    // Kiểm tra đăng nhập
-    var checkLogin = await fetch('../api/check_login.php');
-    var loginStatus = await checkLogin.json();
-
-    if (!loginStatus.login) {
-        alert("Vui lòng đăng nhập để mua sản phẩm.");
-        window.location.href = "../pages/login.html";
-        return;
-    }
-
     // Lấy thông tin sản phẩm
     var productElement = button.closest('.product');
     var name = productElement.dataset.name;
