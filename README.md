@@ -67,7 +67,7 @@ cập nhật thông tin tài khoản, gửi góp ý
 ## Tài khoản mẫu
 **User:**
     Email: jinxjinx123@gmail.com
-    Password: Jinx2004
+    Password: JinxJinx2004
 
 **Admin:**
     Email: tiemlencuakyu@gmail.com

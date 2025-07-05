@@ -56,7 +56,7 @@
                     </a>
                     <a href="./manage_user.html">
                         <div class="nav-option">
-                            <h3>Quản lý người dùng</h3>
+                            <h3>Quản lý tài khoản</h3>
                         </div>
                     </a>
                     <a href="./manage_bill.html">
@@ -80,7 +80,7 @@
             </div>
             <div class="form-wrapper">
                 <fieldset>
-                    <h1 class="heading"><?php echo $is_edit ? 'Chỉnh sửa người dùng' : 'Thêm người dùng mới'; ?></h1>
+                    <h1 class="heading"><?php echo $is_edit ? 'Chỉnh sửa tài khoản' : 'Thêm tài khoản mới'; ?></h1>
                     <form action="<?php echo $is_edit ? './update_user.php' : './add_user.php'; ?>" method="post" enctype="application/x-www-form-urlencoded" id="formUser">
 
                         <?php if($is_edit): ?>

@@ -59,7 +59,7 @@
                     </a>
                     <a href="./manage_user.html">
                         <div class="nav-option">
-                            <h3>Quản lý người dùng</h3>
+                            <h3>Quản lý tài khoản</h3>
                         </div>
                     </a>
                     <a href="./manage_bill.html">

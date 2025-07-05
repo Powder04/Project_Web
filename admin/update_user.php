@@ -26,7 +26,7 @@
         else {
             $pwd = password_hash($_POST["pwd"], PASSWORD_DEFAULT);
             $stm = $mysqli->prepare("UPDATE user SET email = ?, fullname = ?, birthday = ?, pwd = ? WHERE email = ?");
-            $stm->bind_param("ssis", $newEmail, $fullname, $birthday, $pwd, $oldEmail);
+            $stm->bind_param("ssiss", $newEmail, $fullname, $birthday, $pwd, $oldEmail);
         }
 
         if($stm->execute()) {
