@@ -16,7 +16,7 @@ function fetchProducts(page = 1) {
                     <td>${(res.page - 1) * res.limit + index + 1}</td>
                     <td>${product.product_id}</td>
                     <td>${product.name}</td>
-                    <td><img src="data:${product.mime_type};base64,${product.image_data}" width="60px"/></td>
+                    <td><img src="../uploads/${product.product_id}.jpg" width="60px"/></td>
                     <td>${parseInt(product.price).toLocaleString()} VNĐ</td>
                     <td>${product.quantity}</td>
                     <td>${product.sold_count}</td>

@@ -17,7 +17,7 @@ function fetchProduct(page = 1) {
                     data-price="${product.price}"
                     data-stock="${product.quantity}" 
                     data-image="data:${product.mime_type};base64,${product.image_data}">
-                    <img src="data:${product.mime_type};base64,${product.image_data}"/>
+                    <img src="../uploads/${product.product_id}.jpg"/>
                     <p>${product.name}</p>
                     <div class="price-sold">
                         <span class="price">${parseInt(product.price).toLocaleString()}VNĐ</span>
@@ -142,7 +142,7 @@ function detail(order_id) {
                 <tr class="bill">
                     <td>${item.product_id}</td>
                     <td>${item.product_name}</td>
-                    <td><img src="data:${item.mime_type};base64,${item.image_data}" width="60px"/></td>
+                    <td><img src="../uploads/${item.product_id}.jpg" width="60px"/></td>
                     <td>x${item.quantity}</td>
                     <td>${parseInt(item.total_price).toLocaleString()}VNĐ</td>
                 </tr>`;

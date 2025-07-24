@@ -5,7 +5,7 @@ async function topProduct() {
   var heroContent = document.getElementById("top_product");
   heroContent.innerHTML = data.map((product, index) =>
         `<div class="hero-content">
-            <img src="data:${product.mime_type};base64,${product.image_data}"/>
+            <img src="../uploads/${product.product_id}.jpg"/>
                 <p>${product.name}</p>
                 <div class="price-container">
                   <bdi class="price">${product.price}</bdi>
