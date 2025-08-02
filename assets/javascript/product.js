@@ -187,7 +187,6 @@ async function addToCart(product_id, button) {
         body: JSON.stringify(dataToSend)
     });
 
-    alert(`${name} được đặt thành công. Số lượng: ${quantity}`);
     loadCart();
     fetchProduct();
 }
