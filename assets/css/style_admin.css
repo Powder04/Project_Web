@@ -84,7 +84,7 @@ header {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  padding: 30px 0 20px 10px;
+  padding: 30px 0 10px 10px;
 }
 
 .navcontainer {
@@ -102,7 +102,7 @@ header {
 }
 
 .nav-option {
-  width: 250px;
+  width: 260px;
   height: 60px;
   display: flex;
   align-items: center;
