@@ -44,29 +44,34 @@
         <div class="navcontainer">
             <nav class="nav">
                 <div class="nav-upper-options">
-                    <a href="./index.html">
+                    <a href="./index.php">
                         <div class="nav-option">
-                            <h3>Danh mục</h3>
+                            <i class="fa-solid fa-house"></i>
+                            <h3> Danh mục</h3>
                         </div>
                     </a>
                     <a href="./manage_product.html">
                         <div class="nav-option">
-                            <h3>Quản lý sản phẩm</h3>
+                            <i class="fa-solid fa-layer-group"></i>
+                            <h3> Quản lý sản phẩm</h3>
                         </div>
                     </a>
                     <a href="./manage_user.html">
                         <div class="nav-option">
-                            <h3>Quản lý tài khoản</h3>
+                            <i class="fa-solid fa-users"></i>
+                            <h3> Quản lý tài khoản</h3>
                         </div>
                     </a>
                     <a href="./manage_bill.html">
                         <div class="nav-option">
-                            <h3>Quản lý đơn hàng</h3>
+                            <i class="fa-solid fa-receipt"></i>
+                            <h3> Quản lý đơn hàng</h3>
                         </div>
                     </a>
                     <a href="./manage_feedback.html">
                         <div class="nav-option">
-                            <h3>Quản lý phản hồi</h3>
+                            <i class="fa-solid fa-comment"></i>
+                            <h3> Quản lý phản hồi</h3>
                         </div>
                     </a>
                 </div>

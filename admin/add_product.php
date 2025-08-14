@@ -8,11 +8,11 @@
     $quantity = $_POST['quantity'];
 
     if(!isset($_FILES['image_file'])) {
-        die("No file uploaded.");
+        echo "<script> alert('Chưa thêm file ảnh của sản phẩm.'); window.history.back(); </script>";
     }
 
     if($_FILES['image_file']['error'] !== UPLOAD_ERR_OK) {
-        die("Upload error: " . $_FILES['image_file']['error']);
+        echo "<script> alert('Lỗi file ảnh.'); window.history.back(); </script>";
     }
 
     $filename = $_FILES['image_file']['name'];
@@ -22,17 +22,17 @@
 
     $allowed_types = ['image/jpeg', 'image/png', 'image/gif'];
     if(!in_array($mime_type, $allowed_types)) {
-        die("Invalid file type. Only JPG, PNG, and GIF are allowed.");
+        echo "<script> alert('Định dạng file ảnh không hợp lệ.'); window.history.back(); </script>";
     }
 
     if($file_size > 2 * 1024 * 1024) {
-        die("File size too large. Max allowed size is 2MB.");
+        echo "<script> alert('Kích thước file ảnh quá lớn.'); window.history.back(); </script>";
     }
 
     $stm = $mysqli->prepare("INSERT INTO product (product_id, name, category, price, quantity) VALUES (?, ?, ?, ?, ?)");
     $stm->bind_param("sssii", $productID, $nameProduct, $typeProduct, $price, $quantity);
     if(!$stm->execute()) {
-        die("Failed to insert product: " . $stm->error);
+        echo "<script> alert('Lỗi thêm sản phẩm.'); window.history.back(); </script>";
     }
     $stm->close();
 
@@ -41,7 +41,7 @@
     $stm->send_long_data(4, $image_data);
 
     if(!$stm->execute()) {
-        die("Failed to insert image: " . $stm->error);
+        echo "<script> alert('Lỗi thêm sản phẩm.'); window.history.back(); </script>";
     }
     $stm->close();
 
