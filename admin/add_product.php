@@ -45,6 +45,6 @@
     }
     $stm->close();
 
-    echo '<script> alert("Thêm sản phẩm thành công."); window.location.href = "./form_product.html"; </script>';
+    echo '<script> alert("Thêm sản phẩm thành công."); window.location.href = "./form_product.php"; </script>';
     $mysqli->close();
 ?>

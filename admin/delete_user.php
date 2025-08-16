@@ -2,7 +2,7 @@
     require_once('../includes/mysqlConnect.php');
 
     $email = $_POST["email"];
-    $stm = $mysqli->prepare("DELETE FROM orders WHERE email = ?");
+    $stm = $mysqli->prepare("DELETE FROM user WHERE email = ?");
     $stm->bind_param("s", $email);
     if($stm->execute()) {
         echo "Xóa thành công.";
