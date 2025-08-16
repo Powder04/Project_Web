@@ -66,7 +66,7 @@
   <main class="container">
     <fieldset>
       <h1 class="heading">Cập nhật thông tin</h1>
-      <form action="../update.php" method="post">
+      <form action="../account/update.php" method="post">
         <article class="account">
           <label class="lab" for="fullname">Họ và tên: </label>
           <input type="text" class="inpt" value="<?php echo $customer['fullname']; ?>" name="fullname">
